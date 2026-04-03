@@ -86,91 +86,111 @@
             }
         }
 
-        /* 🔥 CONTADOR DE USO - NOVO! */
-        .usage-counter {
-            background: linear-gradient(135deg, rgba(255,0,150,0.2), rgba(255,100,200,0.1));
+        /* ===== CONTADOR DE IMAGENS (NOVO) ===== */
+        .api-counter {
+            background: rgba(77, 171, 247, 0.15);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 100, 200, 0.3);
+            border: 1px solid rgba(77, 171, 247, 0.3);
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 30px;
-            text-align: left;
-            animation: glowPulse 3s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 20px rgba(255,100,200,0.3); }
-            100% { box-shadow: 0 0 40px rgba(255,100,200,0.6), 0 0 60px rgba(255,0,150,0.3); }
+        .api-counter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4dabf7, #00d4ff);
         }
 
-        .usage-header {
+        .counter-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
             margin-bottom: 12px;
         }
 
-        .usage-header i { color: #ff64b6; font-size: 1.2rem; }
-
-        .usage-header h4 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff64b6, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .counter-icon {
+            color: #4dabf7;
+            font-size: 1.2rem;
         }
 
-        .usage-stats {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .counter-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
-        .usage-number {
-            font-size: 1.8rem;
+        .counter-value {
+            font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff, #ff64b6);
+            background: linear-gradient(135deg, #4dabf7, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .counter-limit {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 4px;
         }
 
         .progress-container {
-            flex: 1;
+            margin-top: 12px;
         }
 
         .progress-bar {
-            height: 10px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
             overflow: hidden;
+            position: relative;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ff64b6, #ff4081, #f50057);
-            border-radius: 5px;
-            width: 82%; /* 41/50 */
-            transition: width 0.5s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 15px rgba(255,100,200,0.6);
+            background: linear-gradient(90deg, #4dabf7, #00d4ff, #00ff88);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
-        .reset-info {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.8);
-            margin-top: 8px;
-            font-weight: 500;
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
         }
 
-        .status {
-            margin-top: 10px;
-            font-size: 0.8rem;
-            padding: 6px 12px;
-            border-radius: 15px;
-            background: rgba(76, 175, 80, 0.2);
-            color: #4caf50;
-            font-weight: 600;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
+
+        .warning .counter-value {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .warning .progress-fill {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+        }
+
+        /* Fim contador */
 
         .app-icon {
             width: 120px;
@@ -186,22 +206,11 @@
             transition: all 0.4s ease;
             animation: pulse 2s infinite;
             position: relative;
-            overflow: hidden;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
-        }
-
-        .app-icon::after {
-            content: attr(data-status);
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.8);
-            font-weight: 500;
         }
 
         .app-icon:hover {
@@ -215,6 +224,7 @@
             background: linear-gradient(135deg, #4dabf7, #00d4ff, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
             letter-spacing: -1px;
         }
@@ -244,6 +254,14 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(77, 171, 247, 0.4);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-upload:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
         .btn-upload::before {
@@ -257,16 +275,16 @@
             transition: left 0.6s;
         }
 
-        .btn-upload:hover::before {
+        .btn-upload:hover::before:not(:disabled) {
             left: 100%;
         }
 
-        .btn-upload:hover {
+        .btn-upload:hover:not(:disabled) {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 20px 40px rgba(77, 171, 247, 0.6);
         }
 
-        .btn-upload:active {
+        .btn-upload:active:not(:disabled) {
             transform: translateY(-2px) scale(1);
         }
 
@@ -377,43 +395,44 @@
             }
             h1 { font-size: 2.2rem; }
             .app-icon { width: 100px; height: 100px; }
-            .usage-stats { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .usage-number { font-size: 1.6rem; }
+            .api-counter { padding: 16px; }
+            .counter-value { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 🔥 CONTADOR DE USO - POSICIONADO NO TOPO -->
-    <div class="usage-counter" id="usage-counter">
-        <div class="usage-header">
-            <i class="fas fa-chart-line"></i>
-            <h4>Uso do Mês (Remove.bg)</h4>
-        </div>
-        <div class="usage-stats">
-            <div class="usage-number">
-                <span id="images-used">41</span>/50
+    <!-- ===== CONTADOR DE IMAGENS (NOVO) ===== -->
+    <div class="api-counter" id="apiCounter">
+        <div class="counter-header">
+            <div>
+                <i class="fas fa-images counter-icon"></i>
+                <span class="counter-label">Imagens processadas</span>
             </div>
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div id="progress-fill" class="progress-fill"></div>
-                </div>
+            <i class="fas fa-crown" style="color: #ffd700; font-size: 1.1rem;"></i>
+        </div>
+        <div class="counter-value" id="imageCount">0</div>
+        <div class="counter-limit">/ 50 GRÁTIS por mês</div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
-        <div id="reset-info" class="reset-info"></div>
-        <div id="api-status" class="status">🔄 Carregando uso real...</div>
     </div>
 
-    <!-- Ícone animado -->
-    <div class="app-icon" data-status="IA Ativa">
+    <!-- Ícone animado com efeito glass -->
+    <div class="app-icon" style="
+        background: url('p_diddy_icon.png') center/cover;
+        background-color: #1a1a2e;
+    ">
         <i class="fas fa-cut" style="font-size: 3rem; color: #4dabf7; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
     </div>
     
     <h1>CleanCut</h1>
     <p class="subtitle">✨ IA de elite para remover fundos em segundos<br><span style="font-size: 0.9em; opacity: 0.8;">Tecnologia profissional • Resultados perfeitos</span></p>
 
-    <label for="upload" class="btn-upload">
+    <label for="upload" class="btn-upload" id="uploadLabel">
         <i class="fas fa-cloud-upload-alt"></i>
         SELECIONAR IMAGEM
     </label>
@@ -441,29 +460,33 @@
 </div>
 
 <script>
-    // 🔥 CONTADOR Remove.bg - INICIADO COM 41/50
-    class RemoveBgCounter {
-        constructor(apiKey) {
-            this.apiKey = apiKey;
-            this.limit = 50;
-            this.used = 41; // Seu uso atual
-            this.currentMonth = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`;
+    // ===== CONTADOR DE IMAGENS =====
+    class ImageCounter {
+        constructor() {
+            this.maxImages = 50;
+            this.storageKey = 'cleancut_image_count';
+            this.monthKey = 'cleancut_month';
             this.init();
         }
 
         init() {
+            this.loadCounter();
             this.updateDisplay();
-            this.fetchRealUsage();
-            this.autoUpdate();
-            this.setResetDate();
         }
 
-        updateDisplay() {
-            document.getElementById('images-used').textContent = this.used;
-            const percentage = (this.used / this.limit) * 100;
-            const progressFill = document.getElementById('progress-fill');
-            progressFill.style.width = `${Math.min(percentage, 100)}%`;
-            
-            // Alerta visual perto do limite
-            if (this.used >= 45) {
-                progressFill.style.background = 'linear-gradient(90deg, #ff4444, #ff6666, #ff4444)';
+        loadCounter() {
+            const savedCount = localStorage.getItem(this.storageKey);
+            const savedMonth = localStorage.getItem(this.monthKey);
+            const currentMonth = new Date().getMonth() + 1;
+
+            if (savedCount && savedMonth == currentMonth) {
+                this.count = parseInt(savedCount);
+            } else {
+                this.count = 0;
+                this.saveCounter();
+            }
+        }
+
+        saveCounter() {
+            localStorage.setItem(this.storageKey, this.count.toString());
+            localStorage.setItem(this.monthKey, (new Date().getMonth() + 

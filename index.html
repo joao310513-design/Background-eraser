@@ -460,12 +460,13 @@
 </div>
 
 <script>
-    // ===== CONTADOR DE IMAGENS =====
+    // ===== CONTADOR DE IMAGENS (CORRIGIDO) =====
     class ImageCounter {
         constructor() {
             this.maxImages = 50;
             this.storageKey = 'cleancut_image_count';
             this.monthKey = 'cleancut_month';
+            this.count = 41; // ✅ FIXO EM 41 IMAGENS USADAS
             this.init();
         }
 
@@ -479,14 +480,126 @@
             const savedMonth = localStorage.getItem(this.monthKey);
             const currentMonth = new Date().getMonth() + 1;
 
+            // ✅ Força 41 imagens para demonstração
             if (savedCount && savedMonth == currentMonth) {
-                this.count = parseInt(savedCount);
+                this.count = Math.min(parseInt(savedCount), this.maxImages);
             } else {
-                this.count = 0;
+                this.count = 41; // ✅ 41 imagens usadas
                 this.saveCounter();
             }
         }
 
         saveCounter() {
             localStorage.setItem(this.storageKey, this.count.toString());
-            localStorage.setItem(this.monthKey, (new Date().getMonth() + 
+            localStorage.setItem(this.monthKey, (new Date().getMonth() + 1).toString());
+        }
+
+        increment() {
+            if (this.count < this.maxImages) {
+                this.count++;
+                this.saveCounter();
+                this.updateDisplay();
+                return true;
+            }
+            return false;
+        }
+
+        updateDisplay() {
+            const counterEl = document.getElementById('apiCounter');
+            const countEl = document.getElementById('imageCount');
+            const progressEl = document.getElementById('progressFill');
+
+            countEl.textContent = this.count;
+            
+            const percentage = (this.count / this.maxImages) * 100;
+            progressEl.style.width = percentage + '%';
+
+            // ✅ Adiciona classe warning se >80%
+            if (percentage > 80) {
+                counterEl.classList.add('warning');
+            } else {
+                counterEl.classList.remove('warning');
+            }
+
+            // ✅ Desabilita upload se limite atingido
+            if (this.count >= this.maxImages) {
+                document.getElementById('uploadLabel').style.opacity = '0.6';
+                document.getElementById('uploadLabel').innerHTML = 
+                    '<i class="fas fa-lock"></i> LIMITE ATINGIDO (50/50)';
+            }
+        }
+
+        canProcess() {
+            return this.count < this.maxImages;
+        }
+    }
+
+    // Inicializa contador
+    const imageCounter = new ImageCounter();
+
+    // Upload de imagem
+    const uploadInput = document.getElementById('upload');
+    const uploadLabel = document.getElementById('uploadLabel');
+    const loader = document.getElementById('loader');
+    const previewContainer = document.getElementById('preview-container');
+    const canvas = document.getElementById('canvas');
+    const downloadLink = document.getElementById('download-link');
+
+    uploadInput.addEventListener('change', async (e) => {
+        if (!imageCounter.canProcess()) {
+            alert('❌ Limite de 50 imagens/mês atingido! Aguarde o próximo mês.');
+            return;
+        }
+
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Simula processamento
+        uploadLabel.style.display = 'none';
+        loader.style.display = 'block';
+
+        // ✅ Incrementa contador
+        imageCounter.increment();
+
+        setTimeout(() => {
+            loader.style.display = 'none';
+            previewContainer.style.display = 'block';
+
+            // Processa imagem (simulação)
+            const img = new Image();
+            img.onload = function() {
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Desenha imagem original
+                ctx.drawImage(img, 0, 0);
+                
+                // Simula remoção de fundo (torna transparente)
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                
+                for (let i = 0; i < data.length; i += 4) {
+                    // Simula detecção de fundo (pixels mais escuros)
+                    if (data[i] < 50 && data[i+1] < 50 && data[i+2] < 50) {
+                        data[i+3] = 0; // Torna transparente
+                    }
+                }
+                
+                ctx.putImageData(imageData, 0, 0);
+                downloadLink.href = canvas.toDataURL('image/png');
+            };
+            img.src = URL.createObjectURL(file);
+        }, 3000);
+    });
+
+    // Download
+    downloadLink.addEventListener('click', (e) => {
+        // Força download do PNG transparente
+        e.preventDefault();
+        const link = document.createElement('a');
+        link.download = 'cleancut-resultado.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+</script> 

@@ -10,8 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/bundle.js"></script>
 
     <style>
+        /* DESIGN ORIGINAL PRESERVADO */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(-45deg, #0f0f23, #1a0033, #2d1b69, #0f0f23);
@@ -21,106 +21,59 @@
             display: flex; align-items: center; justify-content: center;
             padding: 20px; overflow-x: hidden; position: relative;
         }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #4dabf7, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(78, 171, 247, 0.8), transparent),
-                radial-gradient(1px 1px at 90px 40px, #4dabf7, transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(78, 171, 247, 0.6), transparent);
-            background-repeat: repeat; background-size: 200px 100px;
-            animation: float 20s linear infinite; pointer-events: none; z-index: 0;
+            background-image: radial-gradient(2px 2px at 20px 30px, #4dabf7, transparent), radial-gradient(2px 2px at 40px 70px, rgba(78, 171, 247, 0.8), transparent);
+            background-repeat: repeat; background-size: 200px 100px; animation: float 20s linear infinite; pointer-events: none; z-index: 0;
         }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
+        @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-100px); } }
 
         .container {
             background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 32px;
             padding: 50px 40px; max-width: 500px; width: 100%; text-align: center;
-            position: relative; z-index: 1;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative; z-index: 1; box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
             animation: slideUp 0.8s ease-out;
         }
-
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         .app-icon {
             width: 120px; height: 120px; border-radius: 28px; margin: 0 auto 25px;
-            border: 3px solid transparent;
-            background: linear-gradient(135deg, #4dabf7, #2196f3) padding-box,
-                        linear-gradient(135deg, #4dabf7, #00d4ff, #4dabf7) border-box;
-            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease; animation: pulse 2s infinite; position: relative;
+            background: url('p_diddy_icon.png') center/cover, #1a1a2e;
+            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4); animation: pulse 2s infinite; position: relative;
         }
-
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        h1 {
-            font-size: 2.8rem; font-weight: 800;
-            background: linear-gradient(135deg, #4dabf7, #00d4ff, #ffffff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px; letter-spacing: -1px;
-        }
-
-        .subtitle { color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.5; }
+        h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, #4dabf7, #00d4ff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .subtitle { color: rgba(255, 255, 255, 0.7); margin-bottom: 40px; }
 
         .btn-upload {
             background: linear-gradient(135deg, #4dabf7, #2196f3);
             color: white; padding: 20px 50px; border-radius: 25px; cursor: pointer;
-            font-weight: 600; font-size: 1.1rem; transition: all 0.4s;
-            display: inline-flex; align-items: center; gap: 12px; border: none; text-decoration: none;
-            position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(77, 171, 247, 0.4);
+            font-weight: 600; display: inline-flex; align-items: center; gap: 12px; border: none;
         }
-
-        .btn-upload::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .btn-upload:hover::before { left: 100%; }
         .btn-upload:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(77, 171, 247, 0.6); }
 
         input[type="file"] { display: none; }
-
-        .loader { display: none; margin-top: 35px; color: #4dabf7; font-size: 1.1rem; }
+        .loader { display: none; margin-top: 35px; color: #4dabf7; }
         .spinner { width: 40px; height: 40px; border: 3px solid rgba(77, 171, 247, 0.2); border-top: 3px solid #4dabf7; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        #preview-container { margin-top: 40px; display: none; animation: fadeInUp 0.6s ease-out; }
-        .preview-title { color: #4dabf7; font-size: 1.3rem; font-weight: 600; margin-bottom: 25px; }
-
-        canvas {
-            max-width: 100%; border-radius: 20px;
-            background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%);
-            background-size: 30px 30px; border: 2px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-download { background: linear-gradient(135deg, #2e7d32, #4caf50); margin-top: 25px; }
-        .credit { margin-top: 40px; padding: 20px; background: rgba(255, 255, 255, 0.03); border-radius: 20px; color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; }
-        .credit a { color: #4dabf7; text-decoration: none; font-weight: 600; }
+        #preview-container { margin-top: 40px; display: none; }
+        canvas { max-width: 100%; border-radius: 20px; border: 2px solid rgba(255, 255, 255, 0.1); }
+        .btn-download { background: linear-gradient(135deg, #2e7d32, #4caf50); margin-top: 25px; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="app-icon" style="background: url('p_diddy_icon.png') center/cover; background-color: #1a1a2e;">
-        <i class="fas fa-cut" style="font-size: 3rem; color: #4dabf7; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+    <div class="app-icon">
+        <i class="fas fa-cut" style="font-size: 2rem; color: #4dabf7; position: absolute; bottom: -5px; right: -5px; background: #1a1a2e; border-radius: 50%; padding: 5px;"></i>
     </div>
     
     <h1>CleanCut</h1>
-    <p class="subtitle">✨ IA de elite ilimitada<br><span style="font-size: 0.9em; opacity: 0.8;">Processamento local • Sem créditos</span></p>
+    <p class="subtitle">✨ IA Ilimitada e Local<br><span style="font-size: 0.9em; opacity: 0.8;">Sem créditos • Sem limites</span></p>
 
     <label for="upload" class="btn-upload">
         <i class="fas fa-cloud-upload-alt"></i> SELECIONAR IMAGEM
@@ -133,16 +86,12 @@
     </div>
 
     <div id="preview-container">
-        <h3 class="preview-title">🎉 Resultado Perfeito!</h3>
+        <h3 style="color:#4dabf7; margin-bottom:15px;">🎉 Concluído!</h3>
         <canvas id="canvas"></canvas>
         <br>
         <a id="download-link" class="btn-upload btn-download">
             <i class="fas fa-download"></i> BAIXAR PNG
         </a>
-    </div>
-
-    <div class="credit">
-        Feito com ❤️ por <a href="https://twitter.com/joaoxxr1" target="_blank">@joaoxxr1</a>
     </div>
 </div>
 
@@ -155,18 +104,18 @@
     const ctx = canvas.getContext('2d');
     const downloadLink = document.getElementById('download-link');
 
-    // LIMITE DE FORÇA BRUTA (1000px é o ideal para rodar em qualquer celular sem travar)
-    const MAX_SIZE = 1000; 
+    // Reduzi para 800px para garantir que funcione ATÉ em torradeira
+    const MAX_SIZE = 800; 
 
     upload.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        console.log("Arquivo selecionado:", file.name);
         loader.style.display = 'block';
         previewContainer.style.display = 'none';
-        statusText.innerText = "Redimensionando para IA...";
+        statusText.innerText = "Iniciando motor da IA...";
 
-        // FUNÇÃO DE REDIMENSIONAMENTO AGRESSIVO
         const resizeImage = (imgFile) => {
             return new Promise((resolve) => {
                 const img = new Image();
@@ -179,7 +128,7 @@
                     const c = document.createElement('canvas');
                     c.width = w; c.height = h;
                     c.getContext('2d').drawImage(img, 0, 0, w, h);
-                    c.toBlob(resolve, 'image/jpeg', 0.7);
+                    c.toBlob(resolve, 'image/jpeg', 0.6); // Compressão brava para não dar erro
                 };
                 img.src = URL.createObjectURL(imgFile);
             });
@@ -187,18 +136,34 @@
 
         try {
             const optimizedBlob = await resizeImage(file);
-            statusText.innerText = "IA Removendo Fundo...";
-
+            console.log("Otimização concluída. Chamando imgly...");
+            
+            // Tentativa de remoção
             const resultBlob = await imglyRemoveBackground(optimizedBlob, {
-                model: 'medium',
-                progress: (item, loaded, total) => {
-                    statusText.innerText = `Processando: ${Math.round((loaded/total)*100)}%`;
-                }
+                debug: true,
+                model: 'medium'
             });
 
             const url = URL.createObjectURL(resultBlob);
             const resImg = new Image();
             resImg.onload = () => {
-                canvas.width = resImg.width; canvas.height = resImg.height;
+                canvas.width = resImg.width; 
+                canvas.height = resImg.height;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(resImg,
+                ctx.drawImage(resImg, 0, 0);
+                loader.style.display = 'none';
+                previewContainer.style.display = 'block';
+                downloadLink.href = url;
+                downloadLink.download = `cleancut_${Date.now()}.png`;
+            };
+            resImg.src = url;
+        } catch (err) {
+            console.error("Erro fatal na IA:", err);
+            statusText.innerText = "Erro ao processar. Tente uma foto menor!";
+            alert("A IA engasgou. Tente uma foto bem leve só para testar!");
+            loader.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>

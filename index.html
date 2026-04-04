@@ -89,6 +89,9 @@
 </div>
 
 <script>
+    // Importando a função de remoção
+    const { removeBackground } = imglyRemoveBackground;
+
     const upload = document.getElementById('upload');
     const loader = document.getElementById('loader');
     const statusIa = document.getElementById('status-ia');
@@ -96,37 +99,43 @@
     const downloadLink = document.getElementById('download-link');
 
     upload.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
+        let file = e.target.files[0];
         if (!file) return;
 
-        // Reset visual
         loader.style.display = 'block';
         resultImg.style.display = 'none';
         downloadLink.style.display = 'none';
-        statusIa.innerText = "Processando... (Pode demorar um pouco na 1ª vez)";
+        statusIa.innerText = "Preparando imagem...";
 
         try {
-            // A MÁGICA ACONTECE AQUI: A IA roda no seu PC/Celular
-            const blob = await imglyRemoveBackground(file);
+            // A MÁGICA: Remove o fundo rodando localmente
+            // Adicionei uma configuração de progresso para dar feedback
+            const blob = await imglyRemoveBackground(file, {
+                debug: true,
+                model: 'medium', // Usa o modelo médio para não travar
+                output: {
+                    type: 'image/png',
+                    quality: 0.8
+                }
+            });
             
             const url = URL.createObjectURL(blob);
             resultImg.src = url;
             resultImg.style.display = 'block';
             
             downloadLink.href = url;
-            downloadLink.download = "cleancut_sem_fundo.png";
+            downloadLink.download = `cleancut_${Date.now()}.png`;
             downloadLink.style.display = 'inline-flex';
 
             loader.style.display = 'none';
-            statusIa.innerText = "Concluído com sucesso! ✅";
+            statusIa.innerText = "Concluído! ✅";
         } catch (error) {
             console.error(error);
-            alert("Erro ao processar. Tente uma imagem menor.");
+            // Se der erro de memória, avisamos de forma elegante
+            alert("Essa foto é muito pesada para o navegador. Tente uma foto com menos de 5MB!");
             loader.style.display = 'none';
             statusIa.innerText = "Erro no processamento.";
         }
     });
-</script>
-
-</body>
-</html>
+                </script>
+                

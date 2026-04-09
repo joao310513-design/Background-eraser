@@ -1,410 +1,1152 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanCut - Apagador de Fundo IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivolution Império | Odontologia & Estética Premium em Corumbá-MS</title>
+<meta name="description" content="Clínica de odontologia e estética facial premium em Corumbá-MS. Implantes, harmonização facial, clareamento dental e muito mais. Agende sua consulta.">
+<meta name="keywords" content="dentista em Corumbá, harmonização facial Corumbá, implante dentário MS, clareamento dental Corumbá, ortodontia MS, botox Corumbá">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #9A7A2E;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --white: #F8F6F1;
+    --gray: #888888;
+    --gray-light: #CCCCCC;
+  }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(-45deg, #0f0f23, #1a0033, #2d1b69, #0f0f23);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
-        }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+  html { scroll-behavior: smooth; }
 
-        /* Partículas de fundo */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #4dabf7, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(78, 171, 247, 0.8), transparent),
-                radial-gradient(1px 1px at 90px 40px, #4dabf7, transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(78, 171, 247, 0.6), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: float 20s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 32px;
-            padding: 50px 40px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            box-shadow: 
-                0 25px 45px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
-            animation: slideUp 0.8s ease-out;
-        }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 20px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    padding: 14px 5%;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    color: rgba(248,246,241,0.75);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001;
+  }
+  .hamburger span {
+    display: block; width: 26px; height: 1.5px;
+    background: var(--gold); transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.98); z-index: 999;
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--white); text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; letter-spacing: 3px;
+    transition: color 0.3s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  /* HERO */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  }
+  .hero-lines {
+    position: absolute; inset: 0; overflow: hidden; opacity: 0.3;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute; top: -50%; left: -50%; right: -50%; bottom: -50%;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent, transparent 80px,
+      rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px
+    );
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 0 5%;
+    max-width: 900px;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 2rem;
+    font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .hero-badge::before, .hero-badge::after {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-size: 0.85rem; font-weight: 300; letter-spacing: 1px;
+    color: rgba(248,246,241,0.6);
+    max-width: 500px; margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+  .hero-btns {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201,168,76,0.3);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(248,246,241,0.3);
+    padding: 16px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: ''; display: block; width: 1px; height: 40px; background: var(--gold);
+    animation: growLine 2s infinite;
+  }
 
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 28px;
-            margin-bottom: 25px;
-            border: 3px solid transparent;
-            background: linear-gradient(135deg, #4dabf7, #2196f3) padding-box,
-                        linear-gradient(135deg, #4dabf7, #00d4ff, #4dabf7) border-box;
-            box-shadow: 
-                0 0 30px rgba(77, 171, 247, 0.4),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            animation: pulse 2s infinite;
-        }
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 40px 5%;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+  .stat-item {
+    text-align: center; padding: 20px;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray); margin-top: 6px;
+  }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+  /* SECTIONS */
+  section { padding: 100px 5%; }
 
-        .app-icon:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 50px rgba(77, 171, 247, 0.6);
-        }
+  .section-tag {
+    font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-tag::before {
+    content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300; line-height: 1.2;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
 
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #4dabf7, #00d4ff, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
+  /* SOBRE */
+  #sobre {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .sobre-visual {
+    position: relative;
+  }
+  .sobre-img-frame {
+    position: relative;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3px;
+    overflow: hidden;
+  }
+  .sobre-img-inner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    height: 480px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .sobre-decorative {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem; font-weight: 300; line-height: 1;
+    color: rgba(201,168,76,0.07);
+    user-select: none;
+    letter-spacing: -5px;
+  }
+  .sobre-corner {
+    position: absolute; width: 60px; height: 60px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .sobre-corner.tl { top: -3px; left: -3px; border-width: 2px 0 0 2px; }
+  .sobre-corner.br { bottom: -3px; right: -3px; border-width: 0 2px 2px 0; }
+  .sobre-badge-float {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--gold);
+    color: var(--black);
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .sobre-badge-float strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; line-height: 1;
+  }
+  .sobre-badge-float span { font-size: 0.6rem; letter-spacing: 1px; font-weight: 600; }
+  .sobre-text { }
+  .sobre-text p {
+    color: rgba(248,246,241,0.65);
+    line-height: 1.9; font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+  .sobre-pills {
+    display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem;
+  }
+  .pill {
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 8px 18px;
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+  .lgbtq-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 2rem; padding: 14px 20px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-size: 0.75rem; color: rgba(248,246,241,0.8);
+  }
+  .rainbow-bar {
+    width: 4px; height: 30px;
+    background: linear-gradient(to bottom, #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff);
+    border-radius: 2px;
+  }
 
-        .subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            line-height: 1.5;
-        }
+  /* SERVIÇOS */
+  #servicos { background: var(--dark2); }
+  .servicos-header { text-align: center; margin-bottom: 5rem; }
+  .servicos-header h2 { max-width: 600px; margin: 0 auto; }
+  .servicos-tabs {
+    display: flex; justify-content: center; gap: 0; margin-bottom: 4rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    overflow: hidden;
+  }
+  .tab-btn {
+    background: transparent; border: none;
+    padding: 14px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gray); cursor: pointer; transition: all 0.3s;
+    border-right: 1px solid rgba(201,168,76,0.3);
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active { background: var(--gold); color: var(--black); font-weight: 700; }
+  .tab-btn:not(.active):hover { color: var(--gold); }
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(201,168,76,0.15); }
+  .service-card {
+    background: var(--black);
+    padding: 40px 35px;
+    transition: all 0.35s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: rgba(201,168,76,0.04); }
+  .service-icon {
+    font-size: 2rem; margin-bottom: 1.2rem;
+    color: var(--gold);
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    margin-bottom: 0.8rem; color: var(--white);
+  }
+  .service-card p {
+    font-size: 0.8rem; color: var(--gray);
+    line-height: 1.7;
+  }
 
-        .btn-upload {
-            background: linear-gradient(135deg, #4dabf7, #2196f3);
-            color: white;
-            padding: 20px 50px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            border: none;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(77, 171, 247, 0.4);
-        }
+  /* DIFERENCIAIS */
+  #diferenciais {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .diferenciais-list { display: flex; flex-direction: column; gap: 0; }
+  .diferencial-item {
+    display: flex; align-items: flex-start; gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(248,246,241,0.07);
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .diferencial-item:first-child { padding-top: 0; }
+  .diferencial-item:hover .diferencial-num { color: var(--black); background: var(--gold); }
+  .diferencial-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; font-weight: 600;
+    color: var(--gold); min-width: 42px; height: 42px;
+    border: 1px solid rgba(201,168,76,0.4);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+  .diferencial-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400;
+    margin-bottom: 0.4rem; color: var(--white);
+  }
+  .diferencial-text p { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+  .diferenciais-visual {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 50px;
+    text-align: center;
+  }
+  .big-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: rgba(201,168,76,0.2);
+    line-height: 0.8; margin-bottom: 2rem;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; font-style: italic;
+    line-height: 1.5; color: var(--white); margin-bottom: 1.5rem;
+  }
+  .quote-author { font-size: 0.7rem; letter-spacing: 3px; color: var(--gold); }
 
-        .btn-upload::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
+  /* ESTRUTURA */
+  #estrutura { background: var(--dark2); }
+  .estrutura-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
+    background: rgba(201,168,76,0.1); margin-top: 3rem;
+  }
+  .estrutura-item {
+    background: var(--black);
+    padding: 40px 30px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .estrutura-item:hover { background: rgba(201,168,76,0.05); }
+  .estrutura-icon { font-size: 2.2rem; color: var(--gold); margin-bottom: 1rem; }
+  .estrutura-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; margin-bottom: 0.6rem;
+  }
+  .estrutura-item p { font-size: 0.77rem; color: var(--gray); line-height: 1.6; }
 
-        .btn-upload:hover::before {
-            left: 100%;
-        }
+  /* DEPOIMENTOS */
+  #depoimentos { overflow: hidden; }
+  .depoimentos-header { text-align: center; margin-bottom: 4rem; }
+  .depoimentos-track {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    background: rgba(201,168,76,0.1);
+  }
+  .depoimento-card {
+    background: var(--dark2); padding: 40px 35px;
+    transition: background 0.3s;
+  }
+  .depoimento-card:hover { background: rgba(201,168,76,0.05); }
+  .stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 1.5rem; }
+  .depoimento-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-style: italic; font-weight: 300;
+    line-height: 1.8; color: rgba(248,246,241,0.85);
+    margin-bottom: 1.5rem;
+  }
+  .depoimento-autor {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--black);
+    flex-shrink: 0;
+  }
+  .autor-info strong {
+    display: block; font-size: 0.8rem; font-weight: 600; color: var(--white);
+  }
+  .autor-info span { font-size: 0.68rem; color: var(--gray); letter-spacing: 1px; }
 
-        .btn-upload:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(77, 171, 247, 0.6);
-        }
+  /* HORARIO */
+  #horario {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .horario-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.2);
+    overflow: hidden;
+  }
+  .horario-header {
+    background: var(--gold);
+    padding: 24px 35px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .horario-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--black); font-weight: 600;
+  }
+  .horario-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 35px;
+    border-bottom: 1px solid rgba(248,246,241,0.06);
+  }
+  .horario-row:last-child { border-bottom: none; }
+  .horario-day { font-size: 0.8rem; color: rgba(248,246,241,0.7); letter-spacing: 1px; }
+  .horario-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--gold);
+  }
+  .horario-time.closed { color: var(--gray); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+  .contato-info h2 { margin-bottom: 2.5rem; }
+  .contato-line {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+  .contato-ico { font-size: 1.2rem; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .contato-line strong {
+    display: block; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .contato-line p { font-size: 0.85rem; color: rgba(248,246,241,0.7); line-height: 1.6; }
+  .contato-line a { color: rgba(248,246,241,0.7); text-decoration: none; transition: color 0.3s; }
+  .contato-line a:hover { color: var(--gold); }
+  .social-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 2rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 12px 24px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .social-link:hover { background: var(--gold); color: var(--black); }
 
-        .btn-upload:active {
-            transform: translateY(-2px) scale(1);
-        }
+  /* FOOTER */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 50px 5% 30px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(248,246,241,0.06);
+    margin-bottom: 30px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600;
+    color: var(--white); letter-spacing: 2px;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-desc {
+    margin-top: 1rem; font-size: 0.8rem;
+    color: var(--gray); line-height: 1.8;
+  }
+  .footer-col h5 {
+    font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem; font-weight: 600;
+  }
+  .footer-col a {
+    display: block; margin-bottom: 0.8rem;
+    font-size: 0.8rem; color: var(--gray); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.72rem; color: var(--gray); }
+  .footer-bottom span { color: var(--gold); }
 
-        input[type="file"] { display: none; }
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 30px; right: 30px; z-index: 999;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: all 0.3s;
+    animation: pulse-wa 2.5s infinite;
+  }
+  .wa-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 12px 40px rgba(37,211,102,0.6);
+  }
+  .wa-float svg { width: 28px; height: 28px; }
 
-        .loader {
-            display: none;
-            margin-top: 35px;
-            color: #4dabf7;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  @keyframes growLine {
+    0%, 100% { opacity: 0.5; transform: scaleY(0.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 8px 50px rgba(37,211,102,0.7); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(77, 171, 247, 0.2);
-            border-top: 3px solid #4dabf7;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        #preview-container {
-            margin-top: 40px;
-            display: none;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .preview-title {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            background: linear-gradient(135deg, #4dabf7, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        canvas {
-            max-width: 100%;
-            max-height: 400px;
-            border-radius: 20px;
-            background-image: 
-                linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.05) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.05) 75%);
-            background-size: 30px 30px;
-            background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        canvas:hover {
-            transform: scale(1.02);
-            box-shadow: 0 25px 50px rgba(77, 171, 247, 0.2);
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, #2e7d32, #4caf50);
-            margin-top: 25px;
-            padding: 18px 45px;
-            font-size: 1.1rem;
-        }
-
-        .credit {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .credit a {
-            color: #4dabf7;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .credit a:hover {
-            color: #00d4ff;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
-                margin: 10px;
-            }
-            h1 { font-size: 2.2rem; }
-            .app-icon { width: 100px; height: 100px; }
-        }
-    </style>
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    #sobre, #diferenciais, #horario { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .tab-content.active { grid-template-columns: repeat(2, 1fr); }
+    .estrutura-grid { grid-template-columns: repeat(2, 1fr); }
+    .depoimentos-track { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 16px 5%; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 70px 5%; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .tab-content.active { grid-template-columns: 1fr; }
+    .servicos-tabs { flex-direction: column; }
+    .tab-btn { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
+    .estrutura-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .sobre-badge-float { width: 90px; height: 90px; bottom: -15px; right: -10px; }
+  }
+  @media (max-width: 480px) {
+    .estrutura-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Ícone animado com efeito glass -->
-    <div class="app-icon" style="
-        background: url('p_diddy_icon.png') center/cover;
-        background-color: #1a1a2e;
-    ">
-        <i class="fas fa-cut" style="font-size: 3rem; color: #4dabf7; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
-    </div>
-    
-    <h1>CleanCut</h1>
-    <p class="subtitle">✨ IA de elite para remover fundos em segundos<br><span style="font-size: 0.9em; opacity: 0.8;">Tecnologia profissional • Resultados perfeitos</span></p>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Ivolution <span>Império</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#estrutura">Estrutura</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#horario">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/5567992274497" class="nav-cta" target="_blank">Agendar</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <label for="upload" class="btn-upload">
-        <i class="fas fa-cloud-upload-alt"></i>
-        SELECIONAR IMAGEM
-    </label>
-    <input type="file" id="upload" accept="image/*">
-
-    <div id="loader" class="loader">
-        <div class="spinner"></div>
-        Processando com IA de ponta... <span style="font-size: 0.9em;">(pode levar alguns segundos)</span>
-    </div>
-
-    <div id="preview-container">
-        <h3 class="preview-title">🎉 Resultado Perfeito!</h3>
-        <canvas id="canvas"></canvas>
-        <br>
-        <a id="download-link" class="btn-upload btn-download">
-            <i class="fas fa-download"></i>
-            BAIXAR PNG TRANSPARENTE
-        </a>
-    </div>
-
-    <div class="credit">
-        <i class="fas fa-heart" style="color: #ff6b9d;"></i>
-        Feito com ❤️ por <a href="https://twitter.com/joaoxxr1" target="_blank">@joaoxxr1</a>
-    </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="closeMenu()">Sobre</a>
+  <a href="#servicos" onclick="closeMenu()">Serviços</a>
+  <a href="#estrutura" onclick="closeMenu()">Estrutura</a>
+  <a href="#depoimentos" onclick="closeMenu()">Depoimentos</a>
+  <a href="#horario" onclick="closeMenu()">Contato</a>
+  <a href="https://wa.me/5567992274497" target="_blank" style="color: #25D366; font-size:1.4rem;">WhatsApp</a>
 </div>
 
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Corumbá · Mato Grosso do Sul</div>
+    <h1>Seu sorriso e sua<br>estética no mais<br><em>alto nível</em></h1>
+    <p class="hero-subtitle">Instituto de Ensino, Pesquisa e Treinamento. Referência em odontologia de excelência e estética facial avançada.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5567992274497" class="btn-primary" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agende pelo WhatsApp
+      </a>
+      <a href="#servicos" class="btn-outline">Ver Serviços</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar reveal">
+  <div class="stat-item">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Anos de Experiência</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2k+</div>
+    <div class="stat-label">Pacientes Atendidos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Procedimentos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">Avaliação no Google</div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-visual reveal">
+    <div class="sobre-img-frame">
+      <div class="sobre-img-inner">
+        <div class="sobre-decorative">IV</div>
+        <div style="position:absolute;bottom:30px;left:30px;right:30px;text-align:left;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(201,168,76,0.6);letter-spacing:2px;">IVOLUTION IMPÉRIO</p>
+          <p style="font-size:0.7rem;color:rgba(248,246,241,0.4);letter-spacing:1px;margin-top:4px;">Instituto de Ensino, Pesquisa e Treinamento · Unidade Corumbá-MS</p>
+        </div>
+      </div>
+      <div class="sobre-corner tl"></div>
+      <div class="sobre-corner br"></div>
+    </div>
+    <div class="sobre-badge-float">
+      <strong>RJ</strong>
+      <span>Referência<br>Nacional</span>
+    </div>
+  </div>
+  <div class="sobre-text reveal">
+    <div class="section-tag">Sobre nós</div>
+    <h2>Excelência vinda do<br><em>Rio de Janeiro</em></h2>
+    <br>
+    <p>A Ivolution Império é uma clínica premium de odontologia e estética facial, trazendo para Corumbá-MS a excelência e o padrão de atendimento do Rio de Janeiro — referência nacional em saúde e beleza.</p>
+    <p>Combinamos tecnologia de ponta com um atendimento verdadeiramente humanizado, em um ambiente sofisticado projetado para o seu conforto e bem-estar em cada visita.</p>
+    <p>Nossa missão é transformar sorrisos e realçar sua beleza natural com procedimentos seguros, modernos e personalizados para você.</p>
+    <div class="sobre-pills">
+      <span class="pill">Tecnologia Avançada</span>
+      <span class="pill">Equipe Especializada</span>
+      <span class="pill">Atendimento Premium</span>
+      <span class="pill">Apaixonados por Sorrisos</span>
+    </div>
+    <div class="lgbtq-badge">
+      <div class="rainbow-bar"></div>
+      <span>Clínica LGBTQ+ Friendly — Atendimento inclusivo e acolhedor para todos</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="servicos-header reveal">
+    <div class="section-tag" style="justify-content:center">Nossos Serviços</div>
+    <h2>Soluções completas para <em>sorriso e beleza</em></h2>
+  </div>
+  <div class="servicos-tabs reveal">
+    <button class="tab-btn active" onclick="showTab('odonto')">Odontologia</button>
+    <button class="tab-btn" onclick="showTab('estetica')">Estética Facial</button>
+    <button class="tab-btn" onclick="showTab('especiais')">Especiais</button>
+  </div>
+
+  <div id="odonto" class="tab-content active reveal">
+    <div class="service-card">
+      <div class="service-icon">🦷</div>
+      <h3>Implantes Dentários</h3>
+      <p>Reposição permanente de dentes com implantes de titânio de alta tecnologia. Resultado natural e duradouro para sua autoestima.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Clareamento Dental</h3>
+      <p>Branqueamento profissional com tecnologia LED avançada. Resultados visíveis já na primeira sessão, de forma segura e controlada.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">😁</div>
+      <h3>Ortodontia</h3>
+      <p>Aparelhos convencionais e alinhadores transparentes para corrigir seu sorriso com conforto e eficiência comprovada.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦷</div>
+      <h3>Próteses Dentárias</h3>
+      <p>Próteses fixas e removíveis com materiais premium, confeccionadas para máximo conforto, estética e funcionalidade.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚨</div>
+      <h3>Emergência Odontológica</h3>
+      <p>Atendimento prioritário para dores agudas, fraturas e situações urgentes. Porque sua saúde bucal não pode esperar.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <h3>Estética Dental</h3>
+      <p>Facetas, lentes de contato e restaurações em resina. Transformamos seu sorriso com precisão milimétrica e beleza incomparável.</p>
+    </div>
+  </div>
+
+  <div id="estetica" class="tab-content reveal">
+    <div class="service-card">
+      <div class="service-icon">💫</div>
+      <h3>Harmonização Facial</h3>
+      <p>Procedimento completo para equilibrar e realçar as proporções do rosto com técnicas seguras e resultados naturais e elegantes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💋</div>
+      <h3>Preenchimento Labial</h3>
+      <p>Volumização e contorno dos lábios com ácido hialurônico de última geração. Resultado natural que respeita a sua identidade.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌟</div>
+      <h3>Toxina Botulínica</h3>
+      <p>Suavização de rugas de expressão com técnica precisa e segura. Rejuvenescimento facial com resultado natural e sofisticado.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✦</div>
+      <h3>Bioestimuladores</h3>
+      <p>Estimulação da produção de colágeno para restaurar volume, firmeza e vitalidade à pele de forma progressiva e natural.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👁️</div>
+      <h3>Contorno Facial</h3>
+      <p>Definição do óvulo do rosto e mandíbula com técnicas modernas para um resultado equilibrado e jovial.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <h3>Skinbooster</h3>
+      <p>Hidratação profunda e revitalização da pele com microinjeções de ácido hialurônico. Pele luminosa e saudável.</p>
+    </div>
+  </div>
+
+  <div id="especiais" class="tab-content reveal">
+    <div class="service-card">
+      <div class="service-icon">😴</div>
+      <h3>Sedação Consciente</h3>
+      <p>Atendimento com sedação para pacientes ansiosos ou com medo. Total conforto e segurança durante todos os procedimentos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏥</div>
+      <h3>Odontologia Preventiva</h3>
+      <p>Programas de prevenção e manutenção da saúde bucal. Consultas de rotina, limpeza profissional e orientações personalizadas.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Ensino & Treinamento</h3>
+      <p>Instituto de Ensino e Pesquisa. Cursos e capacitações para profissionais da saúde com os melhores especialistas do mercado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="diferenciais-list reveal">
+    <div class="section-tag">Por que escolher</div>
+    <h2 style="margin-bottom:3rem">Nossos <em>diferenciais</em></h2>
+    <div class="diferencial-item">
+      <div class="diferencial-num">01</div>
+      <div class="diferencial-text">
+        <h4>Tecnologia de Ponta</h4>
+        <p>Equipamentos modernos e técnicas atualizadas para tratamentos mais precisos, seguros e confortáveis.</p>
+      </div>
+    </div>
+    <div class="diferencial-item">
+      <div class="diferencial-num">02</div>
+      <div class="diferencial-text">
+        <h4>Sedação para Ansiedade</h4>
+        <p>Atendimento com sedação consciente para que mesmo os pacientes mais ansiosos possam cuidar da saúde sem medo.</p>
+      </div>
+    </div>
+    <div class="diferencial-item">
+      <div class="diferencial-num">03</div>
+      <div class="diferencial-text">
+        <h4>Ambiente Acolhedor</h4>
+        <p>Clínica projetada para seu conforto, com recepção sofisticada, atendimento humanizado e espaço privativo.</p>
+      </div>
+    </div>
+    <div class="diferencial-item">
+      <div class="diferencial-num">04</div>
+      <div class="diferencial-text">
+        <h4>Equipe Especializada</h4>
+        <p>Profissionais com formação contínua e atualização constante nas mais modernas técnicas do mercado.</p>
+      </div>
+    </div>
+    <div class="diferencial-item">
+      <div class="diferencial-num">05</div>
+      <div class="diferencial-text">
+        <h4>Atendimento Inclusivo</h4>
+        <p>Clínica LGBTQ+ Friendly. Respeitamos e celebramos a diversidade. Todos são bem-vindos aqui.</p>
+      </div>
+    </div>
+  </div>
+  <div class="diferenciais-visual reveal">
+    <div class="big-quote">"</div>
+    <p class="quote-text">Cada sorriso transformado é uma vida que muda. Esse é o nosso compromisso diário com cada paciente.</p>
+    <div class="quote-author">— Ivolution Império · Corumbá-MS</div>
+    <br><br>
+    <a href="https://wa.me/5567992274497" class="btn-primary" target="_blank" style="justify-content:center;width:100%;">Agendar Consulta</a>
+  </div>
+</section>
+
+<!-- ESTRUTURA -->
+<section id="estrutura">
+  <div class="reveal" style="text-align:center;margin-bottom:1rem">
+    <div class="section-tag" style="justify-content:center">Acessibilidade</div>
+    <h2>Estrutura <em>completa</em> para você</h2>
+    <p style="color:var(--gray);font-size:0.85rem;margin-top:1rem;max-width:500px;margin-left:auto;margin-right:auto">Nossa clínica foi planejada para receber a todos com conforto, segurança e acessibilidade total.</p>
+  </div>
+  <div class="estrutura-grid reveal">
+    <div class="estrutura-item">
+      <div class="estrutura-icon">♿</div>
+      <h4>Entrada Acessível</h4>
+      <p>Acesso facilitado com rampa de entrada e portas amplas para cadeirantes e pessoas com mobilidade reduzida.</p>
+    </div>
+    <div class="estrutura-item">
+      <div class="estrutura-icon">🚻</div>
+      <h4>Banheiro Adaptado</h4>
+      <p>Sanitários adaptados com barras de apoio e espaço adequado para total conforto e independência.</p>
+    </div>
+    <div class="estrutura-item">
+      <div class="estrutura-icon">🅿️</div>
+      <h4>Estacionamento Acessível</h4>
+      <p>Vagas reservadas para pessoas com deficiência, próximas à entrada principal da clínica.</p>
+    </div>
+    <div class="estrutura-item">
+      <div class="estrutura-icon">📡</div>
+      <h4>Wi-Fi na Recepção</h4>
+      <p>Internet gratuita para que sua espera seja ainda mais confortável em nossa recepção sofisticada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="depoimentos-header reveal">
+    <div class="section-tag" style="justify-content:center">Depoimentos</div>
+    <h2>O que nossos <em>pacientes dizem</em></h2>
+  </div>
+  <div class="depoimentos-track reveal">
+    <div class="depoimento-card">
+      <div class="stars">★★★★★</div>
+      <p class="depoimento-text">"Fiz harmonização facial e fiquei impressionada com o resultado. A equipe é super profissional, o ambiente é lindo e me senti acolhida do início ao fim. Recomendo demais!"</p>
+      <div class="depoimento-autor">
+        <div class="avatar">A</div>
+        <div class="autor-info">
+          <strong>Ana Carolina S.</strong>
+          <span>Harmonização Facial</span>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento-card">
+      <div class="stars">★★★★★</div>
+      <p class="depoimento-text">"Fiz meu implante dentário aqui e superou todas as expectativas. Tecnologia avançada, sem dor e com um resultado incrível. Sorrio com muito mais confiança agora!"</p>
+      <div class="depoimento-autor">
+        <div class="avatar">R</div>
+        <div class="autor-info">
+          <strong>Roberto M.</strong>
+          <span>Implante Dentário</span>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento-card">
+      <div class="stars">★★★★★</div>
+      <p class="depoimento-text">"Como pessoa LGBTQ+, sempre tive receio de julgamentos. Aqui fui tratado com todo respeito e carinho. Além do clareamento ficar perfeito, me senti em casa."</p>
+      <div class="depoimento-autor">
+        <div class="avatar">G</div>
+        <div class="autor-info">
+          <strong>Gabriel F.</strong>
+          <span>Clareamento Dental</span>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento-card">
+      <div class="stars">★★★★★</div>
+      <p class="depoimento-text">"Tinha muito medo de dentista e com a sedação nem senti nada! Saí com o sorriso que sempre quis. O atendimento desde a recepção até o consultório é excepcional."</p>
+      <div class="depoimento-autor">
+        <div class="avatar">M</div>
+        <div class="autor-info">
+          <strong>Mariana L.</strong>
+          <span>Ortodontia + Sedação</span>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento-card">
+      <div class="stars">★★★★★</div>
+      <p class="depoimento-text">"O preenchimento labial ficou absolutamente natural. A doutora entendeu exatamente o que eu queria e o resultado é maravilhoso. Já indiquei para todas as minhas amigas!"</p>
+      <div class="depoimento-autor">
+        <div class="avatar">P</div>
+        <div class="autor-info">
+          <strong>Priscila T.</strong>
+          <span>Preenchimento Labial</span>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento-card">
+      <div class="stars">★★★★★</div>
+      <p class="depoimento-text">"Melhor clínica de Corumbá, sem dúvida. Ambiente impecável, equipe qualificada e preços justos. Já fiz várias consultas e sempre saio satisfeito. A estrutura é de alto nível!"</p>
+      <div class="depoimento-autor">
+        <div class="avatar">J</div>
+        <div class="autor-info">
+          <strong>José Eduardo N.</strong>
+          <span>Paciente Regular</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORÁRIO + CONTATO -->
+<section id="horario">
+  <div class="contato-info reveal">
+    <div class="section-tag">Contato & Localização</div>
+    <h2>Venha nos <em>visitar</em></h2>
+    <br>
+    <div class="contato-line">
+      <div class="contato-ico">📍</div>
+      <div>
+        <strong>Endereço</strong>
+        <p>Rua Dom Aquino Correa, 830<br>Centro — Corumbá, MS</p>
+      </div>
+    </div>
+    <div class="contato-line">
+      <div class="contato-ico">📞</div>
+      <div>
+        <strong>Telefones</strong>
+        <p><a href="tel:6732310207">(67) 3231-0207</a><br><a href="tel:5567992274497">(67) 99227-4497</a></p>
+      </div>
+    </div>
+    <div class="contato-line">
+      <div class="contato-ico">💬</div>
+      <div>
+        <strong>WhatsApp</strong>
+        <p><a href="https://wa.me/5567992274497" target="_blank">(67) 99227-4497 — Clique para agendar</a></p>
+      </div>
+    </div>
+    <a href="https://instagram.com/ivolutioncorumba" target="_blank" class="social-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @ivolutioncorumba
+    </a>
+    <br><br>
+    <a href="https://wa.me/5567992274497" class="btn-primary" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar Consulta Agora
+    </a>
+  </div>
+  <div class="reveal">
+    <div class="horario-card">
+      <div class="horario-header">
+        <span style="font-size:1.5rem">🕐</span>
+        <h3>Horário de Funcionamento</h3>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Segunda-feira</span>
+        <span class="horario-time">09:00 – 19:00</span>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Terça-feira</span>
+        <span class="horario-time">09:00 – 19:00</span>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Quarta-feira</span>
+        <span class="horario-time">09:00 – 19:00</span>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Quinta-feira</span>
+        <span class="horario-time">09:00 – 19:00</span>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Sexta-feira</span>
+        <span class="horario-time">09:00 – 19:00</span>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Sábado</span>
+        <span class="horario-time closed">Fechado</span>
+      </div>
+      <div class="horario-row">
+        <span class="horario-day">Domingo</span>
+        <span class="horario-time closed">Fechado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Ivolution <span>Império</span></div>
+      <p class="footer-desc">Instituto de Ensino, Pesquisa e Treinamento.<br>Referência em odontologia e estética facial em Corumbá-MS.<br>Apaixonados por sorrisos.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Serviços</h5>
+      <a href="#servicos">Implantes Dentários</a>
+      <a href="#servicos">Clareamento Dental</a>
+      <a href="#servicos">Ortodontia</a>
+      <a href="#servicos">Harmonização Facial</a>
+      <a href="#servicos">Preenchimento Labial</a>
+      <a href="#servicos">Botox</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <a href="https://wa.me/5567992274497" target="_blank">WhatsApp</a>
+      <a href="tel:6732310207">(67) 3231-0207</a>
+      <a href="https://instagram.com/ivolutioncorumba" target="_blank">Instagram</a>
+      <a href="#horario">Horários</a>
+      <a href="#estrutura">Acessibilidade</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Ivolution Império · Todos os direitos reservados</p>
+    <p>Rua Dom Aquino Correa, 830 · Centro · Corumbá-MS · <span>LGBTQ+ Friendly</span> 🏳️‍🌈</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5567992274497" class="wa-float" target="_blank" title="Fale conosco pelo WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script>
-    // Sua chave de API mantida
-    const API_KEY = "WL2ETBv1shPw9Xg6U6x7TgFU"; 
+  // Navbar scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-    const upload = document.getElementById('upload');
-    const loader = document.getElementById('loader');
-    const previewContainer = document.getElementById('preview-container');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const downloadLink = document.getElementById('download-link');
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMenu() { mobileMenu.classList.remove('open'); }
 
-    upload.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+  // Tabs
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
 
-        loader.style.display = 'block';
-        previewContainer.style.display = 'none';
-        upload.parentElement.style.pointerEvents = 'none';
-
-        const formData = new FormData();
-        formData.append("image_file", file);
-        formData.append("size", "auto");
-
-        try {
-            const response = await fetch("https://api.remove.bg/v1.0/removebg", {
-                method: "POST",
-                headers: { "X-Api-Key": API_KEY },
-                body: formData
-            });
-
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-                
-                const img = new Image();
-                img.onload = () => {
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(img, 0, 0);
-                    
-                    loader.style.display = 'none';
-                    previewContainer.style.display = 'block';
-                    upload.parentElement.style.pointerEvents = 'auto';
-                    
-                    downloadLink.href = url;
-                    downloadLink.download = `cleancut_${Date.now()}_sem_fundo.png`;
-                };
-                img.src = url;
-            } else {
-                const errorData = await response.json();
-                alert("Erro da IA: " + (errorData.errors?.[0]?.title || "Limite de uso excedido"));
-                loader.style.display = 'none';
-                upload.parentElement.style.pointerEvents = 'auto';
-            }
-        } catch (error) {
-            alert("Erro de conexão. Verifique sua internet!");
-            loader.style.display = 'none';
-            upload.parentElement.style.pointerEvents = 'auto';
-        }
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
     });
-
-    // Efeito de drag & drop
-    const container = document.querySelector('.container');
-    container.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        container.style.background = 'rgba(77, 171, 247, 0.1)';
-    });
-    container.addEventListener('dragleave', () => {
-        container.style.background = 'rgba(255, 255, 255, 0.05)';
-    });
-    container.addEventListener('drop', (e) => {
-        e.preventDefault();
-        container.style.background = 'rgba(255, 255, 255, 0.05)';
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            upload.files = files;
-            upload.dispatchEvent(new Event('change'));
-        }
-    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>

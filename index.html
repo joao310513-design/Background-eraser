@@ -3,646 +3,866 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ivolution Império | Odontologia & Estética Premium em Corumbá-MS</title>
-<meta name="description" content="Clínica de odontologia e estética facial premium em Corumbá-MS. Implantes, harmonização facial, clareamento dental e muito mais. Agende sua consulta.">
-<meta name="keywords" content="dentista em Corumbá, harmonização facial Corumbá, implante dentário MS, clareamento dental Corumbá, ortodontia MS, botox Corumbá">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Restaurante Miguéis — Culinária Pantaneira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dark: #9A7A2E;
-    --black: #0A0A0A;
-    --dark: #111111;
-    --dark2: #1A1A1A;
-    --white: #F8F6F1;
-    --gray: #888888;
-    --gray-light: #CCCCCC;
+    --black: #0a0806;
+    --deep: #110e0a;
+    --card: #16120d;
+    --border: #2a2018;
+    --orange: #c8601a;
+    --orange-light: #e07830;
+    --gold: #c9a84c;
+    --gold-dim: #8a6f2e;
+    --cream: #f0e6d0;
+    --muted: #7a6a55;
+    --text: #d4c4a8;
   }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--black);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
   }
 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 20px 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    transition: all 0.4s ease;
-    background: transparent;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,8,6,0.95) 0%, transparent 100%);
+    transition: background 0.4s;
   }
+
   nav.scrolled {
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(20px);
-    padding: 14px 5%;
-    border-bottom: 1px solid rgba(201,168,76,0.2);
+    background: rgba(10,8,6,0.97);
+    border-bottom: 1px solid var(--border);
   }
+
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--white);
+    color: var(--cream);
+    letter-spacing: 0.15em;
     text-decoration: none;
   }
-  .nav-logo span { color: var(--gold); }
+
+  .nav-logo span {
+    color: var(--orange);
+  }
+
   .nav-links {
-    display: flex; gap: 2.5rem; list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
   }
+
   .nav-links a {
-    color: rgba(248,246,241,0.75);
+    color: var(--muted);
     text-decoration: none;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     transition: color 0.3s;
   }
+
   .nav-links a:hover { color: var(--gold); }
+
   .nav-cta {
     background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 10px 24px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-decoration: none;
+    border: 1px solid var(--orange);
+    color: var(--orange) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    transition: all 0.3s !important;
   }
-  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  .nav-cta:hover {
+    background: var(--orange) !important;
+    color: white !important;
+  }
+
+  /* HAMBURGER */
   .hamburger {
-    display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
   }
+
   .hamburger span {
-    display: block; width: 26px; height: 1.5px;
-    background: var(--gold); transition: all 0.3s;
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--cream);
+    transition: all 0.3s;
   }
-  .mobile-menu {
-    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(10,10,10,0.98); z-index: 999;
-    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    color: var(--white); text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem; font-weight: 300; letter-spacing: 3px;
-    transition: color 0.3s;
-  }
-  .mobile-menu a:hover { color: var(--gold); }
 
   /* HERO */
-  #hero {
-    position: relative; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     overflow: hidden;
-    background: var(--black);
   }
+
   .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 30% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(200, 96, 26, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 80% at 20% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 60%),
+      linear-gradient(160deg, #0a0806 0%, #130f09 40%, #0e0b07 100%);
   }
-  .hero-lines {
-    position: absolute; inset: 0; overflow: hidden; opacity: 0.3;
-  }
-  .hero-lines::before {
+
+  /* Decorative lines */
+  .hero-bg::before {
     content: '';
-    position: absolute; top: -50%; left: -50%; right: -50%; bottom: -50%;
-    background: repeating-linear-gradient(
-      -45deg,
-      transparent, transparent 80px,
-      rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px
-    );
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(201, 168, 76, 0.02) 80px,
+        rgba(201, 168, 76, 0.02) 81px
+      );
   }
+
   .hero-content {
-    position: relative; z-index: 2;
-    text-align: center; padding: 0 5%;
-    max-width: 900px;
-    animation: fadeUp 1.2s ease both;
+    position: relative;
+    text-align: center;
+    padding: 0 2rem;
+    animation: fadeUp 1.2s ease forwards;
   }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-bottom: 2rem;
-    font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase;
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
     color: var(--gold);
-    font-weight: 500;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
   }
-  .hero-badge::before, .hero-badge::after {
-    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold-dim);
   }
-  h1 {
+
+  .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-size: clamp(4rem, 10vw, 9rem);
     font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: 2px;
-    margin-bottom: 1.5rem;
+    line-height: 0.9;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
   }
-  h1 em { font-style: italic; color: var(--gold); }
-  .hero-subtitle {
-    font-size: 0.85rem; font-weight: 300; letter-spacing: 1px;
-    color: rgba(248,246,241,0.6);
-    max-width: 500px; margin: 0 auto 3rem;
-    line-height: 1.8;
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--orange-light);
   }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 3rem;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 3rem;
+  }
+
   .hero-btns {
-    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
+
   .btn-primary {
-    background: var(--gold);
-    color: var(--black);
-    padding: 16px 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 2.5px; text-transform: uppercase;
+    background: var(--orange);
+    color: white;
+    padding: 0.9rem 2.5rem;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
     text-decoration: none;
+    cursor: pointer;
     transition: all 0.3s;
-    display: inline-flex; align-items: center; gap: 10px;
   }
+
   .btn-primary:hover {
-    background: var(--gold-light);
+    background: var(--orange-light);
     transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(201,168,76,0.3);
+    box-shadow: 0 8px 24px rgba(200, 96, 26, 0.35);
   }
+
   .btn-outline {
     background: transparent;
-    color: var(--white);
-    border: 1px solid rgba(248,246,241,0.3);
-    padding: 16px 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem; font-weight: 500;
-    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--cream);
+    padding: 0.9rem 2.5rem;
+    border: 1px solid rgba(240, 230, 208, 0.3);
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
     text-decoration: none;
     transition: all 0.3s;
   }
+
   .btn-outline:hover {
     border-color: var(--gold);
     color: var(--gold);
+    transform: translateY(-2px);
   }
+
   .hero-scroll {
-    position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gray);
-    animation: bounce 2s infinite;
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
   }
+
   .hero-scroll::after {
-    content: ''; display: block; width: 1px; height: 40px; background: var(--gold);
-    animation: growLine 2s infinite;
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
   }
 
-  /* STATS BAR */
-  .stats-bar {
-    background: var(--dark2);
-    border-top: 1px solid rgba(201,168,76,0.2);
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-    padding: 40px 5%;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-  }
-  .stat-item {
-    text-align: center; padding: 20px;
-    border-right: 1px solid rgba(201,168,76,0.15);
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 300; color: var(--gold);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gray); margin-top: 6px;
+  /* SECTION BASE */
+  section {
+    padding: 8rem 4rem;
   }
 
-  /* SECTIONS */
-  section { padding: 100px 5%; }
-
-  .section-tag {
-    font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--gold); font-weight: 500; margin-bottom: 1.2rem;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-tag::before {
-    content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
-  }
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 300; line-height: 1.2;
-  }
-  h2 em { font-style: italic; color: var(--gold); }
-
-  /* SOBRE */
-  #sobre {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
-  }
-  .sobre-visual {
-    position: relative;
-  }
-  .sobre-img-frame {
-    position: relative;
-    background: var(--dark2);
-    border: 1px solid rgba(201,168,76,0.2);
-    padding: 3px;
-    overflow: hidden;
-  }
-  .sobre-img-inner {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-    height: 480px;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-  .sobre-decorative {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12rem; font-weight: 300; line-height: 1;
-    color: rgba(201,168,76,0.07);
-    user-select: none;
-    letter-spacing: -5px;
-  }
-  .sobre-corner {
-    position: absolute; width: 60px; height: 60px;
-    border-color: var(--gold);
-    border-style: solid;
-  }
-  .sobre-corner.tl { top: -3px; left: -3px; border-width: 2px 0 0 2px; }
-  .sobre-corner.br { bottom: -3px; right: -3px; border-width: 0 2px 2px 0; }
-  .sobre-badge-float {
-    position: absolute; bottom: -20px; right: -20px;
-    background: var(--gold);
-    color: var(--black);
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-  }
-  .sobre-badge-float strong {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; font-weight: 600; line-height: 1;
-  }
-  .sobre-badge-float span { font-size: 0.6rem; letter-spacing: 1px; font-weight: 600; }
-  .sobre-text { }
-  .sobre-text p {
-    color: rgba(248,246,241,0.65);
-    line-height: 1.9; font-size: 0.9rem;
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--orange);
     margin-bottom: 1.2rem;
-  }
-  .sobre-pills {
-    display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem;
-  }
-  .pill {
-    border: 1px solid rgba(201,168,76,0.35);
-    padding: 8px 18px;
-    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); font-weight: 500;
-  }
-  .lgbtq-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 2rem; padding: 14px 20px;
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.2);
-    font-size: 0.75rem; color: rgba(248,246,241,0.8);
-  }
-  .rainbow-bar {
-    width: 4px; height: 30px;
-    background: linear-gradient(to bottom, #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff);
-    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
-  /* SERVIÇOS */
-  #servicos { background: var(--dark2); }
-  .servicos-header { text-align: center; margin-bottom: 5rem; }
-  .servicos-header h2 { max-width: 600px; margin: 0 auto; }
-  .servicos-tabs {
-    display: flex; justify-content: center; gap: 0; margin-bottom: 4rem;
-    border: 1px solid rgba(201,168,76,0.3);
-    overflow: hidden;
-  }
-  .tab-btn {
-    background: transparent; border: none;
-    padding: 14px 36px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--gray); cursor: pointer; transition: all 0.3s;
-    border-right: 1px solid rgba(201,168,76,0.3);
-  }
-  .tab-btn:last-child { border-right: none; }
-  .tab-btn.active { background: var(--gold); color: var(--black); font-weight: 700; }
-  .tab-btn:not(.active):hover { color: var(--gold); }
-  .tab-content { display: none; }
-  .tab-content.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(201,168,76,0.15); }
-  .service-card {
-    background: var(--black);
-    padding: 40px 35px;
-    transition: all 0.35s;
-    position: relative; overflow: hidden;
-  }
-  .service-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px; background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.35s;
-  }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { background: rgba(201,168,76,0.04); }
-  .service-icon {
-    font-size: 2rem; margin-bottom: 1.2rem;
-    color: var(--gold);
-  }
-  .service-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 400;
-    margin-bottom: 0.8rem; color: var(--white);
-  }
-  .service-card p {
-    font-size: 0.8rem; color: var(--gray);
-    line-height: 1.7;
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--orange);
   }
 
-  /* DIFERENCIAIS */
-  #diferenciais {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
-  }
-  .diferenciais-list { display: flex; flex-direction: column; gap: 0; }
-  .diferencial-item {
-    display: flex; align-items: flex-start; gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(248,246,241,0.07);
-    transition: all 0.3s;
-    cursor: default;
-  }
-  .diferencial-item:first-child { padding-top: 0; }
-  .diferencial-item:hover .diferencial-num { color: var(--black); background: var(--gold); }
-  .diferencial-num {
+  .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.9rem; font-weight: 600;
-    color: var(--gold); min-width: 42px; height: 42px;
-    border: 1px solid rgba(201,168,76,0.4);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; transition: all 0.3s;
-    letter-spacing: 1px;
-  }
-  .diferencial-text h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem; font-weight: 400;
-    margin-bottom: 0.4rem; color: var(--white);
-  }
-  .diferencial-text p { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
-  .diferenciais-visual {
-    background: var(--dark2);
-    border: 1px solid rgba(201,168,76,0.15);
-    padding: 50px;
-    text-align: center;
-  }
-  .big-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem; color: rgba(201,168,76,0.2);
-    line-height: 0.8; margin-bottom: 2rem;
-  }
-  .quote-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem; font-weight: 300; font-style: italic;
-    line-height: 1.5; color: var(--white); margin-bottom: 1.5rem;
-  }
-  .quote-author { font-size: 0.7rem; letter-spacing: 3px; color: var(--gold); }
-
-  /* ESTRUTURA */
-  #estrutura { background: var(--dark2); }
-  .estrutura-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
-    background: rgba(201,168,76,0.1); margin-top: 3rem;
-  }
-  .estrutura-item {
-    background: var(--black);
-    padding: 40px 30px;
-    text-align: center;
-    transition: background 0.3s;
-  }
-  .estrutura-item:hover { background: rgba(201,168,76,0.05); }
-  .estrutura-icon { font-size: 2.2rem; color: var(--gold); margin-bottom: 1rem; }
-  .estrutura-item h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; margin-bottom: 0.6rem;
-  }
-  .estrutura-item p { font-size: 0.77rem; color: var(--gray); line-height: 1.6; }
-
-  /* DEPOIMENTOS */
-  #depoimentos { overflow: hidden; }
-  .depoimentos-header { text-align: center; margin-bottom: 4rem; }
-  .depoimentos-track {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
-    background: rgba(201,168,76,0.1);
-  }
-  .depoimento-card {
-    background: var(--dark2); padding: 40px 35px;
-    transition: background 0.3s;
-  }
-  .depoimento-card:hover { background: rgba(201,168,76,0.05); }
-  .stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 1.5rem; }
-  .depoimento-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem; font-style: italic; font-weight: 300;
-    line-height: 1.8; color: rgba(248,246,241,0.85);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
     margin-bottom: 1.5rem;
   }
-  .depoimento-autor {
-    display: flex; align-items: center; gap: 12px;
-  }
-  .avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; font-weight: 600; color: var(--black);
-    flex-shrink: 0;
-  }
-  .autor-info strong {
-    display: block; font-size: 0.8rem; font-weight: 600; color: var(--white);
-  }
-  .autor-info span { font-size: 0.68rem; color: var(--gray); letter-spacing: 1px; }
 
-  /* HORARIO */
-  #horario {
-    background: var(--black);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  .section-title em {
+    font-style: italic;
+    color: var(--orange-light);
   }
-  .horario-card {
-    background: var(--dark2);
-    border: 1px solid rgba(201,168,76,0.2);
+
+  /* HISTÓRIA */
+  .historia {
+    background: var(--deep);
+    position: relative;
     overflow: hidden;
   }
-  .horario-header {
-    background: var(--gold);
-    padding: 24px 35px;
-    display: flex; align-items: center; gap: 14px;
-  }
-  .horario-header h3 {
+
+  .historia::before {
+    content: '"';
+    position: absolute;
+    top: -2rem;
+    right: 3rem;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; color: var(--black); font-weight: 600;
+    font-size: 20rem;
+    color: rgba(201, 168, 76, 0.04);
+    line-height: 1;
+    pointer-events: none;
   }
-  .horario-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 35px;
-    border-bottom: 1px solid rgba(248,246,241,0.06);
+
+  .historia-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
   }
-  .horario-row:last-child { border-bottom: none; }
-  .horario-day { font-size: 0.8rem; color: rgba(248,246,241,0.7); letter-spacing: 1px; }
-  .horario-time {
+
+  .historia-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .historia-text p strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .historia-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .stat-card {
+    border-left: 1px solid var(--orange);
+    padding: 1.2rem 1.5rem;
+    background: rgba(200, 96, 26, 0.05);
+  }
+
+  .stat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; color: var(--gold);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--orange-light);
+    line-height: 1;
   }
-  .horario-time.closed { color: var(--gray); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
-  .contato-info h2 { margin-bottom: 2.5rem; }
-  .contato-line {
-    display: flex; align-items: flex-start; gap: 1.2rem;
-    margin-bottom: 1.8rem;
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
   }
-  .contato-ico { font-size: 1.2rem; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
-  .contato-line strong {
-    display: block; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 4px;
+
+  /* CARDÁPIO */
+  .cardapio {
+    background: var(--black);
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 8rem 0;
   }
-  .contato-line p { font-size: 0.85rem; color: rgba(248,246,241,0.7); line-height: 1.6; }
-  .contato-line a { color: rgba(248,246,241,0.7); text-decoration: none; transition: color 0.3s; }
-  .contato-line a:hover { color: var(--gold); }
-  .social-link {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 2rem;
-    border: 1px solid rgba(201,168,76,0.3);
-    padding: 12px 24px;
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+
+  .cardapio-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 0 2rem;
+  }
+
+  .category-filters {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    padding: 0 2rem;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
     transition: all 0.3s;
   }
-  .social-link:hover { background: var(--gold); color: var(--black); }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    border-color: var(--orange);
+    color: var(--orange);
+    background: rgba(200, 96, 26, 0.08);
+  }
+
+  .menu-section {
+    padding: 0 2rem;
+    margin-bottom: 5rem;
+  }
+
+  .menu-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .menu-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+
+  .menu-section-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .menu-item {
+    background: var(--card);
+    padding: 1.8rem 2rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--orange);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: bottom;
+  }
+
+  .menu-item:hover {
+    background: rgba(200, 96, 26, 0.06);
+  }
+
+  .menu-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  .menu-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+
+  .menu-item-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .menu-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .menu-item-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--orange);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1px;
+  }
+
+  .menu-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  /* AVALIAÇÕES */
+  .avaliacoes {
+    background: var(--deep);
+    position: relative;
+  }
+
+  .avaliacoes-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .avaliacoes-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .review-card:hover {
+    border-color: var(--gold-dim);
+  }
+
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-author {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .review-tag {
+    font-size: 0.65rem;
+    color: var(--orange);
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: rgba(201, 168, 76, 0.1);
+    line-height: 1;
+  }
+
+  /* INFOS */
+  .infos {
+    background: var(--black);
+  }
+
+  .infos-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .info-block {
+    margin-bottom: 2.5rem;
+  }
+
+  .info-block-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.7rem;
+  }
+
+  .info-block-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .info-block-value a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .info-block-value a:hover {
+    color: var(--gold);
+  }
+
+  .map-placeholder {
+    background: var(--card);
+    border: 1px solid var(--border);
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .map-icon {
+    font-size: 2.5rem;
+    opacity: 0.4;
+  }
+
+  .map-link {
+    background: var(--orange);
+    color: white;
+    padding: 0.7rem 1.8rem;
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.3s;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .map-link:hover {
+    background: var(--orange-light);
+  }
 
   /* FOOTER */
   footer {
-    background: var(--dark2);
-    border-top: 1px solid rgba(201,168,76,0.15);
-    padding: 50px 5% 30px;
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 4rem;
+    text-align: center;
   }
-  .footer-top {
-    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(248,246,241,0.06);
-    margin-bottom: 30px;
-  }
+
   .footer-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem; font-weight: 600;
-    color: var(--white); letter-spacing: 2px;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
   }
-  .footer-logo span { color: var(--gold); }
-  .footer-desc {
-    margin-top: 1rem; font-size: 0.8rem;
-    color: var(--gray); line-height: 1.8;
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
   }
-  .footer-col h5 {
-    font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.5rem; font-weight: 600;
+
+  .footer-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--border);
+    margin: 2rem auto;
   }
-  .footer-col a {
-    display: block; margin-bottom: 0.8rem;
-    font-size: 0.8rem; color: var(--gray); text-decoration: none;
-    transition: color 0.3s;
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
   }
-  .footer-col a:hover { color: var(--gold); }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-bottom p { font-size: 0.72rem; color: var(--gray); }
-  .footer-bottom span { color: var(--gold); }
 
   /* WHATSAPP FLOAT */
-  .wa-float {
-    position: fixed; bottom: 30px; right: 30px; z-index: 999;
-    width: 60px; height: 60px; border-radius: 50%;
+  .whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+    width: 56px;
+    height: 56px;
     background: #25D366;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
     transition: all 0.3s;
-    animation: pulse-wa 2.5s infinite;
+    animation: pulse 3s ease-in-out infinite;
   }
-  .wa-float:hover {
-    transform: scale(1.12);
-    box-shadow: 0 12px 40px rgba(37,211,102,0.6);
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
   }
-  .wa-float svg { width: 28px; height: 28px; }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+  }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 6, 0.98);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+
+  .mobile-menu a:hover { color: var(--orange); }
+
+  .mobile-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
-  @keyframes growLine {
-    0%, 100% { opacity: 0.5; transform: scaleY(0.7); }
+
+  @keyframes scrollLine {
+    0%, 100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
     50% { opacity: 1; transform: scaleY(1); }
   }
-  @keyframes pulse-wa {
-    0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
-    50% { box-shadow: 0 8px 50px rgba(37,211,102,0.7); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3); }
+    50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6); }
   }
+
   .reveal {
-    opacity: 0; transform: translateY(30px);
+    opacity: 0;
+    transform: translateY(24px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    #sobre, #diferenciais, #horario { grid-template-columns: 1fr; gap: 3rem; }
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .stat-item:nth-child(2) { border-right: none; }
-    .tab-content.active { grid-template-columns: repeat(2, 1fr); }
-    .estrutura-grid { grid-template-columns: repeat(2, 1fr); }
-    .depoimentos-track { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 16px 5%; }
-    .nav-links, .nav-cta { display: none; }
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
     .hamburger { display: flex; }
-    section { padding: 70px 5%; }
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .tab-content.active { grid-template-columns: 1fr; }
-    .servicos-tabs { flex-direction: column; }
-    .tab-btn { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.3); }
-    .estrutura-grid { grid-template-columns: 1fr 1fr; }
-    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .sobre-badge-float { width: 90px; height: 90px; bottom: -15px; right: -10px; }
+    section { padding: 5rem 1.5rem; }
+    .historia-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .infos-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .cardapio { padding: 5rem 0; }
+    footer { padding: 3rem 1.5rem; }
   }
-  @media (max-width: 480px) {
-    .estrutura-grid { grid-template-columns: 1fr; }
-    .stats-bar { grid-template-columns: 1fr; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 3.5rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .category-filters { gap: 0.4rem; }
+    .filter-btn { padding: 0.4rem 0.8rem; font-size: 0.6rem; }
   }
 </style>
 </head>
@@ -650,15 +870,13 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">Ivolution <span>Império</span></a>
+  <a href="#" class="nav-logo"><em>M</em>iguéis</a>
   <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#estrutura">Estrutura</a></li>
-    <li><a href="#depoimentos">Depoimentos</a></li>
-    <li><a href="#horario">Contato</a></li>
+    <li><a href="#historia">História</a></li>
+    <li><a href="#cardapio">Cardápio</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#contato" class="nav-cta">Reservas</a></li>
   </ul>
-  <a href="https://wa.me/5567992274497" class="nav-cta" target="_blank">Agendar</a>
   <div class="hamburger" id="hamburger">
     <span></span><span></span><span></span>
   </div>
@@ -666,416 +884,469 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#sobre" onclick="closeMenu()">Sobre</a>
-  <a href="#servicos" onclick="closeMenu()">Serviços</a>
-  <a href="#estrutura" onclick="closeMenu()">Estrutura</a>
-  <a href="#depoimentos" onclick="closeMenu()">Depoimentos</a>
-  <a href="#horario" onclick="closeMenu()">Contato</a>
-  <a href="https://wa.me/5567992274497" target="_blank" style="color: #25D366; font-size:1.4rem;">WhatsApp</a>
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#historia" onclick="closeMobile()">História</a>
+  <a href="#cardapio" onclick="closeMobile()">Cardápio</a>
+  <a href="#avaliacoes" onclick="closeMobile()">Avaliações</a>
+  <a href="#contato" onclick="closeMobile()">Contato</a>
 </div>
 
 <!-- HERO -->
-<section id="hero">
+<section class="hero" id="home">
   <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
   <div class="hero-content">
-    <div class="hero-badge">Corumbá · Mato Grosso do Sul</div>
-    <h1>Seu sorriso e sua<br>estética no mais<br><em>alto nível</em></h1>
-    <p class="hero-subtitle">Instituto de Ensino, Pesquisa e Treinamento. Referência em odontologia de excelência e estética facial avançada.</p>
+    <div class="hero-eyebrow">Desde 2000 · Corumbá, MS</div>
+    <h1 class="hero-title">Restau<em>rante</em><br>Miguéis</h1>
+    <p class="hero-sub">Culinária Pantaneira Contemporânea</p>
+    <div class="hero-divider"></div>
     <div class="hero-btns">
-      <a href="https://wa.me/5567992274497" class="btn-primary" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Agende pelo WhatsApp
-      </a>
-      <a href="#servicos" class="btn-outline">Ver Serviços</a>
+      <a href="#cardapio" class="btn-primary">Explorar Cardápio</a>
+      <a href="https://wa.me/556784661541" class="btn-outline" target="_blank">WhatsApp</a>
     </div>
   </div>
-  <div class="hero-scroll">Scroll</div>
+  <div class="hero-scroll">Deslize</div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar reveal">
-  <div class="stat-item">
-    <div class="stat-num">10+</div>
-    <div class="stat-label">Anos de Experiência</div>
+<!-- HISTÓRIA -->
+<section class="historia" id="historia">
+  <div class="historia-grid">
+    <div class="historia-text reveal">
+      <div class="section-label">Nossa História</div>
+      <h2 class="section-title">Uma família,<br><em>uma tradição</em></h2>
+      <p>Inaugurado em <strong>Janeiro de 2000</strong>, o Restaurante Miguéis é comandado pelas mãos da Culinarista <strong>Dilma Miguéis</strong>, matriarca de uma família de três filhos: Tatiana, Rodrigo e Marcelo.</p>
+      <p>Ela ama cozinhar e deixar a sua casa cheia para as visitas. Esse jeito de encantar as pessoas pela barriga foi ganhando força através de seus pratos caprichados e com aquele tempero caseiro inconfundível.</p>
+      <p>Em <strong>2018</strong> nasce o Novo Miguéis — um jeito moderno de transformar a culinária pantaneira com ingredientes simples e locais em gastronomia contemporânea, apresentando Corumbá para o mundo.</p>
+    </div>
+    <div class="historia-right reveal">
+      <div class="stat-card">
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Anos de tradição</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Culinária pantaneira autêntica</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">R$45</div>
+        <div class="stat-label">À vontade com sobremesa inclusa</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4.8★</div>
+        <div class="stat-label">Avaliação média no Google</div>
+      </div>
+    </div>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">2k+</div>
-    <div class="stat-label">Pacientes Atendidos</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">15+</div>
-    <div class="stat-label">Procedimentos</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">5★</div>
-    <div class="stat-label">Avaliação no Google</div>
+</section>
+
+<!-- CARDÁPIO -->
+<div id="cardapio" style="background: var(--black); padding: 0 2rem;">
+  <div class="cardapio">
+    <div class="cardapio-header reveal">
+      <div class="section-label" style="justify-content: center;">O que servimos</div>
+      <h2 class="section-title">Nosso <em>Cardápio</em></h2>
+      <p style="color: var(--muted); font-size: 0.9rem; max-width: 500px; margin: 0 auto; line-height: 1.7;">Pratos servidos para 2 pessoas, exceto kids e risotos.<br>Para 1 pessoa: 70% do valor.</p>
+    </div>
+
+    <div class="category-filters">
+      <button class="filter-btn active" onclick="filterMenu('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filterMenu('pantaneira', this)">Pantaneira</button>
+      <button class="filter-btn" onclick="filterMenu('file', this)">Filé</button>
+      <button class="filter-btn" onclick="filterMenu('picanha', this)">Picanha</button>
+      <button class="filter-btn" onclick="filterMenu('peixe', this)">Peixe</button>
+      <button class="filter-btn" onclick="filterMenu('frango', this)">Frango</button>
+      <button class="filter-btn" onclick="filterMenu('hamburguer', this)">Hambúrguer</button>
+      <button class="filter-btn" onclick="filterMenu('risoto', this)">Risoto</button>
+      <button class="filter-btn" onclick="filterMenu('drinks', this)">Drinks & Petiscos</button>
+      <button class="filter-btn" onclick="filterMenu('sobremesa', this)">Sobremesas</button>
+    </div>
+
+    <!-- Pantaneira -->
+    <div class="menu-section" data-cat="pantaneira">
+      <h3 class="menu-section-title">Comida Pantaneira</h3>
+      <p class="menu-section-sub">Sabores autênticos do Pantanal Mato-Grossense</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-tag">Destaque</div>
+          <div class="menu-item-name">Carne Soleada</div>
+          <div class="menu-item-desc">Carne soleada, feijão pantaneiro, arroz branco e manteiga de garrafa</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Arroz Carreteiro</div>
+          <div class="menu-item-desc">Arroz carreteiro, papaia e faroja de banana</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Macarrão de Comitiva</div>
+          <div class="menu-item-desc">Macarrão ao molho pantaneiro tradicional</div>
+          <div class="menu-item-price">R$ 70,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Moqueca de Pintado</div>
+          <div class="menu-item-desc">Moqueca de pintado, arroz branco e pirão</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-tag">Especial</div>
+          <div class="menu-item-name">Jacaré ao Molho Urucum</div>
+          <div class="menu-item-desc">Filé do rabillo do jacaré empanado e frito, coberto com molho de creme de leite e leite de coco gratinado, acompanha arroz branco e batatas fritas</div>
+          <div class="menu-item-price">R$ 150,00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filé -->
+    <div class="menu-section" data-cat="file">
+      <h3 class="menu-section-title">Filé</h3>
+      <p class="menu-section-sub">Cortes nobres com o toque Miguéis</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Filé Ricardinho Nogueira</div>
+          <div class="menu-item-desc">Filé grelhado coberto c/ molha de gorgonzola e ervas finas, arroz c/ rúcula e tomate seco e batata frita</div>
+          <div class="menu-item-price">R$ 150,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé à Cubana</div>
+          <div class="menu-item-desc">Filé à milanesa gratinado com queijo. Arroz à grega, batata frita e 1 banana à milanesa</div>
+          <div class="menu-item-price">R$ 145,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé a Osvaldo Aranha</div>
+          <div class="menu-item-desc">Filé coberto c/ catupiry e alho triturado, arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 150,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé Grelhado</div>
+          <div class="menu-item-desc">Filé grelhado, arroz branco e batata frita e ovo</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé à Parmegiana</div>
+          <div class="menu-item-desc">Filé à milanesa. Coberto c/ Molho Sugo, grelhado c/ queijas, arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 145,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé Retomado de Corumbá</div>
+          <div class="menu-item-desc">Filé coberto c/ molho de ameiro, Risoto e c/ crepingh de parmesão e Batata Vichy</div>
+          <div class="menu-item-price">R$ 150,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé Divisão do Estado</div>
+          <div class="menu-item-desc">Filé empanado e frito. Coberto c/ molho 4 queijos, arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 150,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé Ladário</div>
+          <div class="menu-item-desc">Filé coberto c/ grilla de Bacon e uiop, Arroz a panela e Batata vichy</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Filé Corumbo</div>
+          <div class="menu-item-desc">Filé grelhado coberto c/ Catupiry e Faroja de quejo, arroz e grega, 1 banana e Milanesa</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Picanha -->
+    <div class="menu-section" data-cat="picanha">
+      <h3 class="menu-section-title">Picanha</h3>
+      <p class="menu-section-sub">Corte nobre do Pantanal</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-tag">Mais pedido</div>
+          <div class="menu-item-name">Picanha Biro Biro</div>
+          <div class="menu-item-desc">Picanha grelhada acompanha molho Biro Biro (farofa azeitona e bacon), arroz branco</div>
+          <div class="menu-item-price">R$ 158,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Picanha da Ró</div>
+          <div class="menu-item-desc">Picanha grelhada, arroz branco, faroja de grelhada e coco</div>
+          <div class="menu-item-price">R$ 150,00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peixe -->
+    <div class="menu-section" data-cat="peixe">
+      <h3 class="menu-section-title">Peixe</h3>
+      <p class="menu-section-sub">Frescor do Rio Paraguai no seu prato</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Peixe a Urucum</div>
+          <div class="menu-item-desc">Filé de pintado frito coberto com molho de leite de coco e queijo, acompanha arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 130,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Pacu Assado</div>
+          <div class="menu-item-desc">Meia banda de pacu com molho de manteiga e alcaparres, legumes, acompanha arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 130,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Pacu Frito</div>
+          <div class="menu-item-desc">Costinhas de pacu frito, acompanha arroz branco vinagrete e pirão</div>
+          <div class="menu-item-price">R$ 120,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-tag">Destaque</div>
+          <div class="menu-item-name">Pacu Grelhado</div>
+          <div class="menu-item-desc">Pacu grelhado com acompanhamentos da casa</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Peixe do Manézinho</div>
+          <div class="menu-item-desc">Peixe frito, purê de batato, arroz branco e vinagrete</div>
+          <div class="menu-item-price">R$ 120,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Peixe da Cacá</div>
+          <div class="menu-item-desc">Filé de pintado cozido no leite de castanha, arroz branco e faroja crocante de banana</div>
+          <div class="menu-item-price">R$ 130,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Peixe à Urucum</div>
+          <div class="menu-item-desc">Filé de pintado frito coberto com molho especial</div>
+          <div class="menu-item-price">R$ 130,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-tag">Especial da casa</div>
+          <div class="menu-item-name">Peixe da Dilma Miguéis</div>
+          <div class="menu-item-desc">Filé empanado e frito recheado com camarão e catupiry, arroz à grega e batata frita</div>
+          <div class="menu-item-price">R$ 160,00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frango -->
+    <div class="menu-section" data-cat="frango">
+      <h3 class="menu-section-title">Frango</h3>
+      <p class="menu-section-sub">Leveza e sabor pantaneiro</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Frango da Dodola</div>
+          <div class="menu-item-desc">Filé de frango grelhado coberto com catupiry e alho, acompanha arroz à grega, abacaxi grelhado chão</div>
+          <div class="menu-item-price">R$ 120,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Frango à Parmegiana</div>
+          <div class="menu-item-desc">Filé de frango empanado frito, molho ao sugo coberto com queijo, arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 130,00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hambúrguer -->
+    <div class="menu-section" data-cat="hamburguer">
+      <h3 class="menu-section-title">Hambúrgueres</h3>
+      <p class="menu-section-sub">Artesanais com ingredientes do Pantanal</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Hambúrguer de Costela</div>
+          <div class="menu-item-desc">Hambúrguer artesanal de costela bovina com acompanhamentos especiais</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Hambúrguer Vegetariano</div>
+          <div class="menu-item-desc">Hambúrguer vegetal com alface, tomate e molho da casa</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-tag">Exclusivo</div>
+          <div class="menu-item-name">Hambúrguer de Jacaré</div>
+          <div class="menu-item-desc">O único hambúrguer de jacaré da região — uma experiência gastronômica inesquecível</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risoto -->
+    <div class="menu-section" data-cat="risoto">
+      <h3 class="menu-section-title">Risoto</h3>
+      <p class="menu-section-sub">Cremosidade italiana com alma pantaneira · Serve 1 pessoa</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Risoto de Banana da Terra e Carne de Sol</div>
+          <div class="menu-item-desc">Risoto de banana da terra e carne de sol defchão pimenta dedo de moça, pimenta biqinho e crispy de carne de sol</div>
+          <div class="menu-item-price">R$ 55,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Risoto de Queijo Nicola e Ragu de Costela</div>
+          <div class="menu-item-desc">Risoto de queijo nicola, queijo típico da região — sabor marcante e cremoso</div>
+          <div class="menu-item-price">R$ 58,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Risoto de Camarão</div>
+          <div class="menu-item-desc">Risoto de camarão com pimenta dedo de moça</div>
+          <div class="menu-item-price">R$ 70,00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drinks & Petiscos -->
+    <div class="menu-section" data-cat="drinks">
+      <h3 class="menu-section-title">Drinks & Petiscos</h3>
+      <p class="menu-section-sub">Para começar ou acompanhar</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Margarita</div>
+          <div class="menu-item-desc">Clássico coquetel cítrico servido gelado</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-tag">Instagramável</div>
+          <div class="menu-item-name">Tina de Patitos</div>
+          <div class="menu-item-desc">Drink especial servido em tina decorativa — o mais fotografado da casa</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Cheese Balls</div>
+          <div class="menu-item-desc">Bolinhas crocantes de queijo derretido com molho especial</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Croquete de Jacaré</div>
+          <div class="menu-item-desc">Croquetes crocantes de jacaré com geleia especial — entrada exclusiva</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Fritas Especiais</div>
+          <div class="menu-item-desc">Batatas fritas cobertas com queijo cheddar e bacon crocante</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sobremesas -->
+    <div class="menu-section" data-cat="sobremesa">
+      <h3 class="menu-section-title">Sobremesas</h3>
+      <p class="menu-section-sub">O final perfeito</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-tag">Favorito</div>
+          <div class="menu-item-name">Gran Gateau</div>
+          <div class="menu-item-desc">Bolo quente de chocolate com sorvete, calda e farofa de amendoim — irresistível</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Taça de Sorvete</div>
+          <div class="menu-item-desc">Taça generosa com sorvete, cobertura e acompanhamentos da casa</div>
+          <div class="menu-item-price">sob consulta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kids -->
+    <div class="menu-section" data-cat="all">
+      <h3 class="menu-section-title">Prato Kids</h3>
+      <p class="menu-section-sub">Serve 1 criança · Espaço kids disponível</p>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-name">Isca de Frango</div>
+          <div class="menu-item-desc">Filé de frango, arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 28,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Isca de Carne</div>
+          <div class="menu-item-desc">Filé de carne, arroz branco e batata frita</div>
+          <div class="menu-item-price">R$ 38,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-name">Espaguete à Bolonhesa</div>
+          <div class="menu-item-desc">Massa ao molho bolonhesa tradicional</div>
+          <div class="menu-item-price">R$ 30,00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-note">
+      ★ Os pratos são servidos para 2 pessoas, com exceção dos pratos kids e risotos.<br>
+      Caso queira para uma pessoa, será cobrado 70% do valor original.
+    </div>
   </div>
 </div>
 
-<!-- SOBRE -->
-<section id="sobre">
-  <div class="sobre-visual reveal">
-    <div class="sobre-img-frame">
-      <div class="sobre-img-inner">
-        <div class="sobre-decorative">IV</div>
-        <div style="position:absolute;bottom:30px;left:30px;right:30px;text-align:left;">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(201,168,76,0.6);letter-spacing:2px;">IVOLUTION IMPÉRIO</p>
-          <p style="font-size:0.7rem;color:rgba(248,246,241,0.4);letter-spacing:1px;margin-top:4px;">Instituto de Ensino, Pesquisa e Treinamento · Unidade Corumbá-MS</p>
+<!-- AVALIAÇÕES -->
+<section class="avaliacoes" id="avaliacoes">
+  <div class="avaliacoes-inner">
+    <div class="avaliacoes-header reveal">
+      <div class="section-label" style="justify-content: center;">O que dizem de nós</div>
+      <h2 class="section-title">Avaliações</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Pelo valor de R$ 45 à vontade ainda incluindo sobremesa, o custo-benefício é simplesmente incrível. Sempre que venho a Corumbá faço questão de almoçar aqui."</p>
+        <div class="review-author">Avaliador Local
+          <span class="review-tag">Almoço · R$ 40–60 · Comida 5 · Serviço 5 · Ambiente 5</span>
         </div>
       </div>
-      <div class="sobre-corner tl"></div>
-      <div class="sobre-corner br"></div>
-    </div>
-    <div class="sobre-badge-float">
-      <strong>RJ</strong>
-      <span>Referência<br>Nacional</span>
-    </div>
-  </div>
-  <div class="sobre-text reveal">
-    <div class="section-tag">Sobre nós</div>
-    <h2>Excelência vinda do<br><em>Rio de Janeiro</em></h2>
-    <br>
-    <p>A Ivolution Império é uma clínica premium de odontologia e estética facial, trazendo para Corumbá-MS a excelência e o padrão de atendimento do Rio de Janeiro — referência nacional em saúde e beleza.</p>
-    <p>Combinamos tecnologia de ponta com um atendimento verdadeiramente humanizado, em um ambiente sofisticado projetado para o seu conforto e bem-estar em cada visita.</p>
-    <p>Nossa missão é transformar sorrisos e realçar sua beleza natural com procedimentos seguros, modernos e personalizados para você.</p>
-    <div class="sobre-pills">
-      <span class="pill">Tecnologia Avançada</span>
-      <span class="pill">Equipe Especializada</span>
-      <span class="pill">Atendimento Premium</span>
-      <span class="pill">Apaixonados por Sorrisos</span>
-    </div>
-    <div class="lgbtq-badge">
-      <div class="rainbow-bar"></div>
-      <span>Clínica LGBTQ+ Friendly — Atendimento inclusivo e acolhedor para todos</span>
-    </div>
-  </div>
-</section>
-
-<!-- SERVIÇOS -->
-<section id="servicos">
-  <div class="servicos-header reveal">
-    <div class="section-tag" style="justify-content:center">Nossos Serviços</div>
-    <h2>Soluções completas para <em>sorriso e beleza</em></h2>
-  </div>
-  <div class="servicos-tabs reveal">
-    <button class="tab-btn active" onclick="showTab('odonto')">Odontologia</button>
-    <button class="tab-btn" onclick="showTab('estetica')">Estética Facial</button>
-    <button class="tab-btn" onclick="showTab('especiais')">Especiais</button>
-  </div>
-
-  <div id="odonto" class="tab-content active reveal">
-    <div class="service-card">
-      <div class="service-icon">🦷</div>
-      <h3>Implantes Dentários</h3>
-      <p>Reposição permanente de dentes com implantes de titânio de alta tecnologia. Resultado natural e duradouro para sua autoestima.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">✨</div>
-      <h3>Clareamento Dental</h3>
-      <p>Branqueamento profissional com tecnologia LED avançada. Resultados visíveis já na primeira sessão, de forma segura e controlada.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">😁</div>
-      <h3>Ortodontia</h3>
-      <p>Aparelhos convencionais e alinhadores transparentes para corrigir seu sorriso com conforto e eficiência comprovada.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🦷</div>
-      <h3>Próteses Dentárias</h3>
-      <p>Próteses fixas e removíveis com materiais premium, confeccionadas para máximo conforto, estética e funcionalidade.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🚨</div>
-      <h3>Emergência Odontológica</h3>
-      <p>Atendimento prioritário para dores agudas, fraturas e situações urgentes. Porque sua saúde bucal não pode esperar.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🔬</div>
-      <h3>Estética Dental</h3>
-      <p>Facetas, lentes de contato e restaurações em resina. Transformamos seu sorriso com precisão milimétrica e beleza incomparável.</p>
-    </div>
-  </div>
-
-  <div id="estetica" class="tab-content reveal">
-    <div class="service-card">
-      <div class="service-icon">💫</div>
-      <h3>Harmonização Facial</h3>
-      <p>Procedimento completo para equilibrar e realçar as proporções do rosto com técnicas seguras e resultados naturais e elegantes.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">💋</div>
-      <h3>Preenchimento Labial</h3>
-      <p>Volumização e contorno dos lábios com ácido hialurônico de última geração. Resultado natural que respeita a sua identidade.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🌟</div>
-      <h3>Toxina Botulínica</h3>
-      <p>Suavização de rugas de expressão com técnica precisa e segura. Rejuvenescimento facial com resultado natural e sofisticado.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">✦</div>
-      <h3>Bioestimuladores</h3>
-      <p>Estimulação da produção de colágeno para restaurar volume, firmeza e vitalidade à pele de forma progressiva e natural.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">👁️</div>
-      <h3>Contorno Facial</h3>
-      <p>Definição do óvulo do rosto e mandíbula com técnicas modernas para um resultado equilibrado e jovial.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🌿</div>
-      <h3>Skinbooster</h3>
-      <p>Hidratação profunda e revitalização da pele com microinjeções de ácido hialurônico. Pele luminosa e saudável.</p>
-    </div>
-  </div>
-
-  <div id="especiais" class="tab-content reveal">
-    <div class="service-card">
-      <div class="service-icon">😴</div>
-      <h3>Sedação Consciente</h3>
-      <p>Atendimento com sedação para pacientes ansiosos ou com medo. Total conforto e segurança durante todos os procedimentos.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🏥</div>
-      <h3>Odontologia Preventiva</h3>
-      <p>Programas de prevenção e manutenção da saúde bucal. Consultas de rotina, limpeza profissional e orientações personalizadas.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🎓</div>
-      <h3>Ensino & Treinamento</h3>
-      <p>Instituto de Ensino e Pesquisa. Cursos e capacitações para profissionais da saúde com os melhores especialistas do mercado.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DIFERENCIAIS -->
-<section id="diferenciais">
-  <div class="diferenciais-list reveal">
-    <div class="section-tag">Por que escolher</div>
-    <h2 style="margin-bottom:3rem">Nossos <em>diferenciais</em></h2>
-    <div class="diferencial-item">
-      <div class="diferencial-num">01</div>
-      <div class="diferencial-text">
-        <h4>Tecnologia de Ponta</h4>
-        <p>Equipamentos modernos e técnicas atualizadas para tratamentos mais precisos, seguros e confortáveis.</p>
-      </div>
-    </div>
-    <div class="diferencial-item">
-      <div class="diferencial-num">02</div>
-      <div class="diferencial-text">
-        <h4>Sedação para Ansiedade</h4>
-        <p>Atendimento com sedação consciente para que mesmo os pacientes mais ansiosos possam cuidar da saúde sem medo.</p>
-      </div>
-    </div>
-    <div class="diferencial-item">
-      <div class="diferencial-num">03</div>
-      <div class="diferencial-text">
-        <h4>Ambiente Acolhedor</h4>
-        <p>Clínica projetada para seu conforto, com recepção sofisticada, atendimento humanizado e espaço privativo.</p>
-      </div>
-    </div>
-    <div class="diferencial-item">
-      <div class="diferencial-num">04</div>
-      <div class="diferencial-text">
-        <h4>Equipe Especializada</h4>
-        <p>Profissionais com formação contínua e atualização constante nas mais modernas técnicas do mercado.</p>
-      </div>
-    </div>
-    <div class="diferencial-item">
-      <div class="diferencial-num">05</div>
-      <div class="diferencial-text">
-        <h4>Atendimento Inclusivo</h4>
-        <p>Clínica LGBTQ+ Friendly. Respeitamos e celebramos a diversidade. Todos são bem-vindos aqui.</p>
-      </div>
-    </div>
-  </div>
-  <div class="diferenciais-visual reveal">
-    <div class="big-quote">"</div>
-    <p class="quote-text">Cada sorriso transformado é uma vida que muda. Esse é o nosso compromisso diário com cada paciente.</p>
-    <div class="quote-author">— Ivolution Império · Corumbá-MS</div>
-    <br><br>
-    <a href="https://wa.me/5567992274497" class="btn-primary" target="_blank" style="justify-content:center;width:100%;">Agendar Consulta</a>
-  </div>
-</section>
-
-<!-- ESTRUTURA -->
-<section id="estrutura">
-  <div class="reveal" style="text-align:center;margin-bottom:1rem">
-    <div class="section-tag" style="justify-content:center">Acessibilidade</div>
-    <h2>Estrutura <em>completa</em> para você</h2>
-    <p style="color:var(--gray);font-size:0.85rem;margin-top:1rem;max-width:500px;margin-left:auto;margin-right:auto">Nossa clínica foi planejada para receber a todos com conforto, segurança e acessibilidade total.</p>
-  </div>
-  <div class="estrutura-grid reveal">
-    <div class="estrutura-item">
-      <div class="estrutura-icon">♿</div>
-      <h4>Entrada Acessível</h4>
-      <p>Acesso facilitado com rampa de entrada e portas amplas para cadeirantes e pessoas com mobilidade reduzida.</p>
-    </div>
-    <div class="estrutura-item">
-      <div class="estrutura-icon">🚻</div>
-      <h4>Banheiro Adaptado</h4>
-      <p>Sanitários adaptados com barras de apoio e espaço adequado para total conforto e independência.</p>
-    </div>
-    <div class="estrutura-item">
-      <div class="estrutura-icon">🅿️</div>
-      <h4>Estacionamento Acessível</h4>
-      <p>Vagas reservadas para pessoas com deficiência, próximas à entrada principal da clínica.</p>
-    </div>
-    <div class="estrutura-item">
-      <div class="estrutura-icon">📡</div>
-      <h4>Wi-Fi na Recepção</h4>
-      <p>Internet gratuita para que sua espera seja ainda mais confortável em nossa recepção sofisticada.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section id="depoimentos">
-  <div class="depoimentos-header reveal">
-    <div class="section-tag" style="justify-content:center">Depoimentos</div>
-    <h2>O que nossos <em>pacientes dizem</em></h2>
-  </div>
-  <div class="depoimentos-track reveal">
-    <div class="depoimento-card">
-      <div class="stars">★★★★★</div>
-      <p class="depoimento-text">"Fiz harmonização facial e fiquei impressionada com o resultado. A equipe é super profissional, o ambiente é lindo e me senti acolhida do início ao fim. Recomendo demais!"</p>
-      <div class="depoimento-autor">
-        <div class="avatar">A</div>
-        <div class="autor-info">
-          <strong>Ana Carolina S.</strong>
-          <span>Harmonização Facial</span>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"A farofa com manteiga de garrafa estava incrível! O ambiente é muito caprichado. Realmente de bom gosto sem ser muito chique. O espaço kids ajuda muito."</p>
+        <div class="review-author">Edmundo Bergo · Local Guide
+          <span class="review-tag">Almoço · R$ 40–60 · Comida 4 · Serviço 4 · Ambiente 4</span>
         </div>
       </div>
-    </div>
-    <div class="depoimento-card">
-      <div class="stars">★★★★★</div>
-      <p class="depoimento-text">"Fiz meu implante dentário aqui e superou todas as expectativas. Tecnologia avançada, sem dor e com um resultado incrível. Sorrio com muito mais confiança agora!"</p>
-      <div class="depoimento-autor">
-        <div class="avatar">R</div>
-        <div class="autor-info">
-          <strong>Roberto M.</strong>
-          <span>Implante Dentário</span>
-        </div>
-      </div>
-    </div>
-    <div class="depoimento-card">
-      <div class="stars">★★★★★</div>
-      <p class="depoimento-text">"Como pessoa LGBTQ+, sempre tive receio de julgamentos. Aqui fui tratado com todo respeito e carinho. Além do clareamento ficar perfeito, me senti em casa."</p>
-      <div class="depoimento-autor">
-        <div class="avatar">G</div>
-        <div class="autor-info">
-          <strong>Gabriel F.</strong>
-          <span>Clareamento Dental</span>
-        </div>
-      </div>
-    </div>
-    <div class="depoimento-card">
-      <div class="stars">★★★★★</div>
-      <p class="depoimento-text">"Tinha muito medo de dentista e com a sedação nem senti nada! Saí com o sorriso que sempre quis. O atendimento desde a recepção até o consultório é excepcional."</p>
-      <div class="depoimento-autor">
-        <div class="avatar">M</div>
-        <div class="autor-info">
-          <strong>Mariana L.</strong>
-          <span>Ortodontia + Sedação</span>
-        </div>
-      </div>
-    </div>
-    <div class="depoimento-card">
-      <div class="stars">★★★★★</div>
-      <p class="depoimento-text">"O preenchimento labial ficou absolutamente natural. A doutora entendeu exatamente o que eu queria e o resultado é maravilhoso. Já indiquei para todas as minhas amigas!"</p>
-      <div class="depoimento-autor">
-        <div class="avatar">P</div>
-        <div class="autor-info">
-          <strong>Priscila T.</strong>
-          <span>Preenchimento Labial</span>
-        </div>
-      </div>
-    </div>
-    <div class="depoimento-card">
-      <div class="stars">★★★★★</div>
-      <p class="depoimento-text">"Melhor clínica de Corumbá, sem dúvida. Ambiente impecável, equipe qualificada e preços justos. Já fiz várias consultas e sempre saio satisfeito. A estrutura é de alto nível!"</p>
-      <div class="depoimento-autor">
-        <div class="avatar">J</div>
-        <div class="autor-info">
-          <strong>José Eduardo N.</strong>
-          <span>Paciente Regular</span>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ambiente agradável, comida de qualidade e preço justo — difícil encontrar tudo isso junto hoje em dia. Recomendo para todo mundo sem pensar duas vezes!"</p>
+        <div class="review-author">Anderson Nogueira · Local Guide
+          <span class="review-tag">Almoço · Comida 5 · Serviço 5 · Ambiente 5 · Sem espera</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HORÁRIO + CONTATO -->
-<section id="horario">
-  <div class="contato-info reveal">
-    <div class="section-tag">Contato & Localização</div>
-    <h2>Venha nos <em>visitar</em></h2>
-    <br>
-    <div class="contato-line">
-      <div class="contato-ico">📍</div>
-      <div>
-        <strong>Endereço</strong>
-        <p>Rua Dom Aquino Correa, 830<br>Centro — Corumbá, MS</p>
+<!-- CONTATO -->
+<section class="infos" id="contato">
+  <div class="infos-inner">
+    <div class="reveal">
+      <div class="section-label">Onde estamos</div>
+      <h2 class="section-title">Venha nos <em>visitar</em></h2>
+
+      <div class="info-block">
+        <div class="info-block-label">Endereço</div>
+        <div class="info-block-value">R. Quinze de Novembro, 732<br>Centro · Corumbá - MS · 79300-004</div>
       </div>
+
+      <div class="info-block">
+        <div class="info-block-label">Telefone</div>
+        <div class="info-block-value">
+          <a href="tel:6732312922">(67) 3231-2922</a>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">Horário</div>
+        <div class="info-block-value">Aberto · Fecha às 00:00</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">Reservas</div>
+        <div class="info-block-value">Sem necessidade de reserva<br>Adequado para grupos de todos os tamanhos</div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">Redes Sociais</div>
+        <div class="info-block-value">
+          <a href="https://pt-br.facebook.com" target="_blank">Facebook</a>
+          &nbsp;·&nbsp;
+          <a href="https://wa.me/556784661541" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/fzwkG5Vhe9WEcPy46" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">
+        Ver no Google Maps
+      </a>
     </div>
-    <div class="contato-line">
-      <div class="contato-ico">📞</div>
-      <div>
-        <strong>Telefones</strong>
-        <p><a href="tel:6732310207">(67) 3231-0207</a><br><a href="tel:5567992274497">(67) 99227-4497</a></p>
-      </div>
-    </div>
-    <div class="contato-line">
-      <div class="contato-ico">💬</div>
-      <div>
-        <strong>WhatsApp</strong>
-        <p><a href="https://wa.me/5567992274497" target="_blank">(67) 99227-4497 — Clique para agendar</a></p>
-      </div>
-    </div>
-    <a href="https://instagram.com/ivolutioncorumba" target="_blank" class="social-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      @ivolutioncorumba
-    </a>
-    <br><br>
-    <a href="https://wa.me/5567992274497" class="btn-primary" target="_blank">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Agendar Consulta Agora
-    </a>
-  </div>
-  <div class="reveal">
-    <div class="horario-card">
-      <div class="horario-header">
-        <span style="font-size:1.5rem">🕐</span>
-        <h3>Horário de Funcionamento</h3>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Segunda-feira</span>
-        <span class="horario-time">09:00 – 19:00</span>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Terça-feira</span>
-        <span class="horario-time">09:00 – 19:00</span>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Quarta-feira</span>
-        <span class="horario-time">09:00 – 19:00</span>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Quinta-feira</span>
-        <span class="horario-time">09:00 – 19:00</span>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Sexta-feira</span>
-        <span class="horario-time">09:00 – 19:00</span>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Sábado</span>
-        <span class="horario-time closed">Fechado</span>
-      </div>
-      <div class="horario-row">
-        <span class="horario-day">Domingo</span>
-        <span class="horario-time closed">Fechado</span>
+
+    <div class="reveal">
+      <div class="map-placeholder">
+        <div class="map-icon">📍</div>
+        <span style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;">Restaurante Miguéis</span>
+        <span style="font-size: 0.75rem; text-align: center; max-width: 200px;">R. Quinze de Novembro, 732 · Centro · Corumbá - MS</span>
+        <a href="https://maps.app.goo.gl/fzwkG5Vhe9WEcPy46" target="_blank" class="map-link">Abrir no Maps</a>
       </div>
     </div>
   </div>
@@ -1083,70 +1354,64 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">Ivolution <span>Império</span></div>
-      <p class="footer-desc">Instituto de Ensino, Pesquisa e Treinamento.<br>Referência em odontologia e estética facial em Corumbá-MS.<br>Apaixonados por sorrisos.</p>
-    </div>
-    <div class="footer-col">
-      <h5>Serviços</h5>
-      <a href="#servicos">Implantes Dentários</a>
-      <a href="#servicos">Clareamento Dental</a>
-      <a href="#servicos">Ortodontia</a>
-      <a href="#servicos">Harmonização Facial</a>
-      <a href="#servicos">Preenchimento Labial</a>
-      <a href="#servicos">Botox</a>
-    </div>
-    <div class="footer-col">
-      <h5>Contato</h5>
-      <a href="https://wa.me/5567992274497" target="_blank">WhatsApp</a>
-      <a href="tel:6732310207">(67) 3231-0207</a>
-      <a href="https://instagram.com/ivolutioncorumba" target="_blank">Instagram</a>
-      <a href="#horario">Horários</a>
-      <a href="#estrutura">Acessibilidade</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Ivolution Império · Todos os direitos reservados</p>
-    <p>Rua Dom Aquino Correa, 830 · Centro · Corumbá-MS · <span>LGBTQ+ Friendly</span> 🏳️‍🌈</p>
-  </div>
+  <div class="footer-logo"><em>M</em>iguéis</div>
+  <div class="footer-sub">Restaurante Pantaneiro · Corumbá, MS</div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2025 Restaurante Miguéis · Todos os direitos reservados</p>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/5567992274497" class="wa-float" target="_blank" title="Fale conosco pelo WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a href="https://wa.me/556784661541" class="whatsapp-float" target="_blank" title="Fale conosco">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
 </a>
 
 <script>
-  // Navbar scroll
+  // NAV scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Mobile menu
+  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMenu() { mobileMenu.classList.remove('open'); }
+  const mobileClose = document.getElementById('mobileClose');
 
-  // Tabs
-  function showTab(id) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    event.target.classList.add('active');
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
   }
 
   // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Menu filter
+  function filterMenu(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.menu-section').forEach(section => {
+      if (cat === 'all' || section.dataset.cat === cat) {
+        section.style.display = 'block';
+      } else {
+        section.style.display = 'none';
+      }
+    });
+  }
 </script>
 </body>
 </html>
